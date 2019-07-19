@@ -1,11 +1,8 @@
 <?php
 class Departemen_model extends CI_Model {
 
-<<<<<<< HEAD
-=======
 //DEPARTEMEN
 
->>>>>>> penambahan menu request dan view request
 	public function getAllDepDivisi(){
     	$this->db->select('*');
     	$this->db->from('tb_departemen');
@@ -31,11 +28,7 @@ class Departemen_model extends CI_Model {
     	} else {
     		return array();
     	}
-<<<<<<< HEAD
-    	
-=======
     	   
->>>>>>> penambahan menu request dan view request
 	} 
 
 	public function getDepDivisi($id_dep){
@@ -75,14 +68,7 @@ class Departemen_model extends CI_Model {
 		$this->db->where('id_dep', $id_dep);
 		$this->db->delete($table);
 
-<<<<<<< HEAD
-	}
-
-
-   
-=======
 	}  
->>>>>>> penambahan menu request dan view request
     
 
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2019 at 12:02 AM
+-- Generation Time: Jul 19, 2019 at 11:50 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -25,6 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(2) NOT NULL,
+  `id_parent` int(2) NOT NULL,
+  `icon` varchar(40) NOT NULL,
+  `nama_menu` varchar(40) NOT NULL,
+  `url` varchar(70) NOT NULL,
+  `is_active` varchar(1) NOT NULL,
+  `AI` int(11) NOT NULL,
+  `dropdown` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id`, `id_parent`, `icon`, `nama_menu`, `url`, `is_active`, `AI`, `dropdown`) VALUES
+(1, 0, 'icon-home icon-white', 'Home', 'index.php/admin', 'Y', 1, 'N'),
+(2, 0, 'icon-book icon-white', 'Request D2P', 'index.php/request_d2p/request_d2p_list', 'Y', 2, 'N'),
+(3, 0, 'icon-tag icon-white', 'View Request', 'index.php/view_requestd2p/view_requestd2p_list', 'Y', 3, 'N'),
+(5, 0, 'icon-home icon-white', 'Master', '', 'Y', 4, 'Y'),
+(6, 5, '', 'Data Departement', 'index.php/master_data/master_data_departemen', 'Y', 5, 'N'),
+(7, 5, '', 'Data Divisi', 'index.php/master_divisi/master_data_divisi', 'Y', 6, 'N'),
+(8, 5, '', 'Role Access', 'index.php/m_role_access/master_role_access', 'Y', 7, 'N'),
+(9, 5, '', 'Data User', 'index.php/m_data_user/master_data_user', 'Y', 8, 'N');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `m_status`
 --
 
@@ -40,10 +71,12 @@ CREATE TABLE `m_status` (
 INSERT INTO `m_status` (`id_status`, `status_name`) VALUES
 (1, 'Draft'),
 (2, 'Waiting Approval Manager'),
-(3, 'Reject Manager'),
+(3, 'Waiting Approval Manager Operation'),
 (4, 'Waiting Approval GM Operation'),
-(5, 'Approve GM Operation'),
-(6, 'Reject GM Operation');
+(5, 'Approved GM Operation'),
+(6, 'Reject Manager'),
+(7, 'Reject Manager Operation'),
+(8, 'Reject GM Operation');
 
 -- --------------------------------------------------------
 
@@ -112,7 +145,11 @@ CREATE TABLE `tb_departemen` (
 
 INSERT INTO `tb_departemen` (`id_dep`, `id_divisi`, `nama_departemen`) VALUES
 (1, 1, 'O&M Application Platform and Database'),
-(2, 1, 'Customer Care');
+(2, 1, 'Customer Care'),
+(3, 2, 'System Development'),
+(4, 2, 'System Integration'),
+(5, 3, 'Port Solution'),
+(6, 3, 'E-Payment Solution');
 
 -- --------------------------------------------------------
 
@@ -131,7 +168,8 @@ CREATE TABLE `tb_divisi` (
 
 INSERT INTO `tb_divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'Operation and Service Delivery'),
-(2, 'System Development and Integration ');
+(2, 'System Development and Integration'),
+(3, 'Product Management');
 
 -- --------------------------------------------------------
 
@@ -179,10 +217,10 @@ CREATE TABLE `tb_role_access` (
 --
 
 INSERT INTO `tb_role_access` (`id_role_access`, `role_access`) VALUES
-(1, 'admin'),
-(2, 'staff'),
-(3, 'manager'),
-(4, 'general manager');
+(1, 'ADMIN'),
+(2, 'STAFF'),
+(3, 'MANAGER'),
+(4, 'GENERAL MANAGER');
 
 -- --------------------------------------------------------
 
@@ -198,15 +236,18 @@ CREATE TABLE `tb_user` (
   `realname` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
   `role_access` varchar(20) NOT NULL,
-  `status` varchar(1) NOT NULL
+  `status` varchar(1) NOT NULL,
+  `id_role_access` int(2) NOT NULL,
+  `id_divisi` int(2) NOT NULL,
+  `id_dep` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `role_access`, `status`) VALUES
-('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'staff', 'Y');
+INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `role_access`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
+('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'staff', 'Y', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -237,7 +278,7 @@ INSERT INTO `tr_instansi` (`id`, `nama`, `alamat`, `kepsek`, `nip_kepsek`, `logo
 --
 
 CREATE TABLE `tr_request` (
-  `id` int(2) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `project_name` varchar(200) NOT NULL,
   `project_id` varchar(100) NOT NULL,
@@ -256,9 +297,8 @@ CREATE TABLE `tr_request` (
 --
 
 INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_manager`, `keterangan`, `req_date`, `created_date`, `status_req`, `update_date`, `upload_file`, `created_by`) VALUES
-(1, 'JAMAL', 'AUTOGATE PANJANG', '01010101', 'JIHAD', 'INFRA', '2019-06-02', '2019-06-02', '3', '0000-00-00', '0', 1),
-(2, 'ROLA', 'NPKTOS', '202020', 'ADHI', 'APLIKASI', '2019-06-05', '2019-06-05', '2', '0000-00-00', '0', 1),
-(14, 'FAIZ', 'VMS PIROK', '30303030', 'HAFIZ', 'APLIKASI', '2019-06-10', '2019-06-10', '1', '2019-06-10', '1', 1);
+(1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '2', '0000-00-00', '0', 1),
+(3, 'WAHYU', 'BARU', 'WAHYU', 'WAHYU', 'WAHYU', '2019-07-06', '0000-00-00', '2', '0000-00-00', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -340,6 +380,12 @@ CREATE TABLE `t_surat_keputusan` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`AI`);
 
 --
 -- Indexes for table `m_status`
@@ -436,6 +482,12 @@ ALTER TABLE `t_surat_keputusan`
 --
 
 --
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `AI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `ref_klasifikasi`
 --
 ALTER TABLE `ref_klasifikasi`
@@ -451,13 +503,13 @@ ALTER TABLE `suratmasuk`
 -- AUTO_INCREMENT for table `tb_departemen`
 --
 ALTER TABLE `tb_departemen`
-  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_divisi`
 --
 ALTER TABLE `tb_divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
@@ -469,7 +521,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tr_request`
 --
 ALTER TABLE `tr_request`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_admin`

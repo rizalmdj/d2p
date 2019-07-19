@@ -37,7 +37,7 @@
 
 			<tr><td width="20%">Keterangan</td><td><b><input type="text" name="keterangan" style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="20%">Date</td><td><b><input type="text" name="req_date" placeholder="YYYY-MM-DD" required style="width: 400px" class="form-control datepicker"></b></td></tr>
+			<tr><td width="20%">Date</td><td><b><input type="date" name="req_date" placeholder="DD-MM-YYYY" required style="width: 400px" class="form-control"></b></td></tr>
 
 			<tr><td width="20%">File D2P</td><td><b><input type="file" name="upload_file"  style="width: 400px" class="form-control"></b></td></tr>
 
