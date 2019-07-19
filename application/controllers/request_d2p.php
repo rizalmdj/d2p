@@ -20,7 +20,6 @@ class Request_d2p extends CI_Controller {
 
 	public function add_request_d2p (){
 		$data['page']		= "f_requestd2p";	
-		$data['request'] = $this->requestd2p_model->getAllRequest();
 		$this->load->view('admin/aaa', $data);
 	}
 
@@ -46,8 +45,11 @@ class Request_d2p extends CI_Controller {
 // EDIT REQUEST D2P
 
 	public function edit_request_d2p (){
-		$data['page']		= "f_requestd2p";	
-		$data['request'] = $this->requestd2p_model->getAllRequest();
+		$id					= $this->uri->segment(3);
+		$data['data'] = $this->requestd2p_model->getEditRequestById($id);
+		$data['page']		= "f_requestd2p_edit";
+		// print_r($data['data']);exit;	
+		$data['request'] = $this->requestd2p_model->getAllEditRequest();
 		$this->load->view('admin/aaa', $data);
 	}
 
@@ -61,11 +63,11 @@ class Request_d2p extends CI_Controller {
 		// $this->form_validation->set_rules('upload_file','upload_file','trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
-			redirect('index.php/request_d2p/add_request_d2p');
+			redirect('index.php/request_d2p/edit_request_d2p');
 
 		 }else {
-		 	$this->requestd2p_model->add_request();
-		 	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
+		 	$this->requestd2p_model->edit_request();
+		 	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been edited</div>");
 		 	redirect('index.php/request_d2p/request_d2p_list');
 		 }
 	}
@@ -74,13 +76,15 @@ class Request_d2p extends CI_Controller {
 
 	public function delete_request_d2p($id){
 		$this->requestd2p_model->delete_request_d2p($id,'tr_request');
+		$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been deleted</div>");
 		redirect('index.php/request_d2p/request_d2p_list');
 	}
 
-// SUBMIT REQUEST D2P
+// SUBMIT REQUEST D2P 
 
 	public function submit_request_d2p($id){
-		$this->requestd2p_model->submit_request_d2p($id,'tr_request');
+		$this->requestd2p_model->submit_request_d2p($id);
+		$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been submited</div>");
 		redirect('index.php/request_d2p/request_d2p_list');
 	}
 

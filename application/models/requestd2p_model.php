@@ -1,12 +1,13 @@
 <?php
 class Requestd2p_model extends CI_Model {
 
-//REQUEST D2P MODEL
+//  VIEW GET ALL REQUEST D2P MODEL
 
 	public function getAllRequest(){
     	$this->db->select('*');
     	$this->db->from('tr_request');
     	$this->db->join('m_status', 'tr_request.status_req = m_status.id_status');
+        $this->db->order_by("created_date", "asc");
     	
     	$query = $this->db->get();
     	if ($query->num_rows() > 0){
@@ -16,6 +17,37 @@ class Requestd2p_model extends CI_Model {
     	}
     }
 
+//  GET ALL EDIT REQUEST D2P MODEL
+
+    public function getAllEditRequest(){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status','tr_request.status_req = m_status.id_status');
+        $this->db->where('id');
+                
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+
+//  GET EDIT REQUEST D2P MODEL
+
+     public function getEditRequestById($id){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status','tr_request.status_req = m_status.id_status');
+        $this->db->where('id', $id);
+        
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
 
 // ADD REQUEST D2P MODEL    
 
@@ -53,7 +85,8 @@ class Requestd2p_model extends CI_Model {
             "upload_file" => $this->input->post('upload_file',true),
             "created_by" => '1'
         );
-        $this->db->insert('tr_request', $data);
+        $this->db->where('id', $this->input->post('id',true));
+        $this->db->update('tr_request', $data);
 
     }
 
@@ -66,19 +99,16 @@ class Requestd2p_model extends CI_Model {
 
     }  
 
-// // SUBMIT REQUEST D2P BELOM SELESAI
+//  SUBMIT REQUEST D2P BELOM SELESAI
 
-//     public function submit_request_d2p{
-//         $data = array(
-//             "created_date" => $this->input->post(NOW(),true),
-//             "status_req" => '2',
-//             "update_date" => $this->input->post(NOW(),true),
-//             "upload_file" => $this->input->post('upload_file',true),
-//             "created_by" => '1'
-//         );
-//         $this->db->where('id', $id);
-//         $this->db->update('tr_request', $data);
+    public function submit_request_d2p($id){
+        $data = array(
+            "status_req" => '5'
+            // "update_date" => $this->input->post(NOW(),true)
+        );
+        $this->db->where('id', $id);
+        $this->db->update('tr_request', $data);
 
-//     } 
+    }
 
 }

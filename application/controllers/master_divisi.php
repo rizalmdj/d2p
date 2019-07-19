@@ -10,7 +10,7 @@ class Master_divisi extends CI_Controller {
 
 	public function master_data_divisi (){
 		$data['page']		= "l_divisi";
-		$data['divisi'] = $this->m_divisi_model->getAllDepDivisi();
+		$data['divisi'] = $this->m_divisi_model->getAllDivisi();
 		$this->load->view('admin/aaa', $data);
 	}
 
@@ -33,6 +33,38 @@ class Master_divisi extends CI_Controller {
 		 	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
 		 	redirect('index.php/master_divisi/master_data_divisi');
 		 }
+}
+
+ // EDIT MATER DIVISI
+
+
+	public function edit_divisi($id_divisi){
+		// $id_divisi 			= $this->uri->segment(3);
+		$data['page']		="f_edit_divisi";
+		$data['divisi']	= $this->m_divisi_model->getDivisi($id_divisi);
+		$this->load->view('admin/aaa', $data);
 
 	}
+
+	public function do_edit_divisi (){
+
+		$this->form_validation->set_rules('nama_divisi','nama_divisi', 'trim|required');
+		
+		if ($this->form_validation->run() == FALSE) {
+			redirect('index.php/master_divisi/edit_divisi');
+
+		 }else {
+		 	$this->m_divisi_model->edit_divisi();
+		 	redirect('index.php/master_divisi/master_data_divisi');
+		 }
+
+	}
+// DELETE
+
+	public function hapus_divisi($id_divisi){
+		$this->m_divisi_model->delete_divisi($id_divisi,'tb_divisi');
+		redirect('index.php/master_divisi/master_data_divisi');
+
+	}
+	
 }

@@ -32,8 +32,8 @@
 	<thead>
 		<tr>
 			<th width="5%">NO</th>
-			<th width="30%">DIVISI</th>
-			<th width="40%">OPSI</th>
+			<th width="50%">DIVISI</th>
+			<th width="20%">OPSI</th>
 		</tr>
 	</thead>
 	
