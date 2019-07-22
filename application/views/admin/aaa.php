@@ -54,23 +54,7 @@
 					});
 				},
 			});
-		});
-		
-		$(function () {
-			$( "#dari" ).autocomplete({
-				source: function(request, response) {
-					$.ajax({ 
-						url: "<?php echo site_url('index.php/admin/get_instansi_lain'); ?>",
-						data: { kode: $("#dari").val()},
-						dataType: "json",
-						type: "POST",
-						success: function(data){
-							response(data);
-						}    
-					});
-				},
-			});
-		});
+		});				
 		
 		$('.datepicker').datepicker({
 			dateFormat: 'yy-mm-dd'
