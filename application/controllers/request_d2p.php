@@ -11,7 +11,7 @@ class Request_d2p extends CI_Controller {
 
 	public function request_d2p_list (){
 		$data['page']		= "l_request_d2p";	
-		$data['request'] = $this->requestd2p_model->getAllRequest();
+		$data['request'] = $this->requestd2p_model->getAllRequest();				
 		$this->load->view('admin/aaa', $data);
 	}
 
@@ -25,7 +25,7 @@ class Request_d2p extends CI_Controller {
 
 	public function do_add_requestd2p () {
 
-		$this->form_validation->set_rules('name','name','trim|required');
+		//$this->form_validation->set_rules('name','name','trim|required');
 		$this->form_validation->set_rules('project_name','project_name','trim|required');
 		$this->form_validation->set_rules('project_id','project_id','trim|required');
 		$this->form_validation->set_rules('project_manager','project_manager','trim|required');
@@ -36,9 +36,26 @@ class Request_d2p extends CI_Controller {
 			redirect('index.php/request_d2p/add_request_d2p');
 
 		 }else {
-		 	$this->requestd2p_model->add_request();
-		 	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
-		 	redirect('index.php/request_d2p/request_d2p_list');
+				
+			$config['upload_path']          = './upload/';
+            $config['allowed_types']        = 'gif|jpg|png';                
+			$this->load->library('upload', $config);
+			
+                if ( ! $this->upload->do_upload('upload_file'))
+                {
+                        $error = array('error' => $this->upload->display_errors());
+
+                        $this->load->view('upload_form', $error);
+                }
+                else
+                {
+                        $data = array('upload_data' => $this->upload->data());
+						print_r($this->upload->data('file_name'));
+                        $this->requestd2p_model->add_request($this->upload->data('file_name')['file_name']);
+		 				$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
+		 				redirect('index.php/request_d2p/request_d2p_list');
+                }			
+				
 		 }
 	}
 
