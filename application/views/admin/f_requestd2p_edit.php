@@ -19,7 +19,7 @@
 
 					<tr><td width="20%">Name</td><td><b><input type="text" name="name" value="<?php echo $data[0]->name ?>"
 						
-						required style="width: 400px" class="form-control"></b></td></tr>
+						required disabled style="width: 400px" class="form-control"></b></td></tr>
 
 					<tr><td width="20%">Project Name</td><td><b><textarea name="project_name" 
 
