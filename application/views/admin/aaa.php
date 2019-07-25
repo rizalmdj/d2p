@@ -35,7 +35,7 @@
   
     <script src="<?php echo base_url(); ?>aset/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>aset/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>aset/js/bootswatch.js"></script>
+    <script src="<?php echo base_url(); ?>aset/bootswatch.js"></script>
 	<script src="<?php echo base_url(); ?>aset/js/jquery/jquery-ui.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
@@ -156,8 +156,7 @@
 		<?php $this->load->view('admin/'.$page); ?>
 	  
 
-	  <div class="span12 well well-sm">
-		
+	  <div class="span12 well well-sm">		
 		<h6>&copy;  2019 | D2P  | Time Execution : {elapsed_time}, Memory Usage : {memory_usage}</h6>
 	  </div>
  

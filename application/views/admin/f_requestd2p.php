@@ -5,7 +5,10 @@
 		</div>
 	</div><!-- /.container -->
 </div><!-- /.navbar -->
-	<?php echo $this->session->flashdata("k");?>
+	<?php 
+	echo $this->session->flashdata("k");
+	$var = $this->session->userdata;
+	?>
 	<form action="<?php echo base_URL(); ?>index.php/request_d2p/do_add_requestd2p" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		
 	<div class="row-fluid well" style="overflow: hidden">
@@ -13,7 +16,7 @@
 	<div class="col-lg-6">
 		<table width="200%" class="table-form">
 
-			<tr><td width="20%">Name</td><td><b><input type="text" name="name" required style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="20%">Name</td><td><b><input type="text" name="name" value="<?php echo $var['nama']; ?>" disabled style="width: 400px" class="form-control"></b></td></tr>
 
 			<tr><td width="20%">Project Name</td><td><b><textarea name="project_name" required style="width: 400px; height: 85px" class="form-control"></textarea></b></td></tr>			
 

@@ -7,7 +7,7 @@ class Requestd2p_model extends CI_Model {
     	$this->db->select('*');
     	$this->db->from('tr_request');
     	$this->db->join('m_status', 'tr_request.status_req = m_status.id_status');
-        $this->db->order_by("created_date", "asc");
+        $this->db->order_by("created_date", "desc");
     	
     	$query = $this->db->get();
     	if ($query->num_rows() > 0){
@@ -51,19 +51,20 @@ class Requestd2p_model extends CI_Model {
 
 // ADD REQUEST D2P MODEL    
 
-    public function add_request() {
+    public function add_request($filename) {
+        $var = $this->session->userdata;		
         $data = array(
-            "name" => $this->input->post('name',true),
+            "name" => $var['nama'],
             "project_name" => $this->input->post('project_name',true),
             "project_id" => $this->input->post('project_id',true),
             "project_manager" => $this->input->post('project_manager',true),
             "keterangan" => $this->input->post('keterangan',true),
             "req_date" => $this->input->post('req_date',true),
-            "created_date" => $this->input->post(NOW(),true),
+            "created_date" => date('Y-m-d H:i:s'),
             "status_req" => '1',
-            "update_date" => $this->input->post(NOW(),true),
-            "upload_file" => $this->input->post('upload_file',true),
-            "created_by" => '1'
+            "update_date" => date('Y-m-d H:i:s'),
+            "upload_file" => $filename,
+            "created_by" => $var['id']
         );
         $this->db->insert('tr_request', $data);
 
