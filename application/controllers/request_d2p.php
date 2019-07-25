@@ -40,8 +40,39 @@ class Request_d2p extends CI_Controller {
 			$config['upload_path']          = './upload/';
             $config['allowed_types']        = 'gif|jpg|png';                
 			$this->load->library('upload', $config);
-			
-                if ( ! $this->upload->do_upload('upload_file'))
+			$j = 0;
+				if($this->upload->do_upload('upload_file')){
+					$j++;	
+					$data = array('upload_data' => $this->upload->data());
+					$file1 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file1')){
+					$j++;	
+					$data = array('upload_data1' => $this->upload->data());
+					$file2 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file2')){
+					$j++;	
+					$data = array('upload_data2' => $this->upload->data());
+					$file3 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file3')){
+					$j++;	
+					$data = array('upload_data3' => $this->upload->data());
+					$file4 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file4')){
+					$j++;	
+					$data = array('upload_data4' => $this->upload->data());
+					$file5 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file5')){
+					$j++;	
+					$data = array('upload_data5' => $this->upload->data());
+					$file6 = $this->upload->data('file_name')['file_name'];
+				}
+
+                if ( $j < 6)
                 {
                         $error = array('error' => $this->upload->display_errors());
 
@@ -49,12 +80,12 @@ class Request_d2p extends CI_Controller {
                 }
                 else
                 {
-                        $data = array('upload_data' => $this->upload->data());
-						print_r($this->upload->data('file_name'));
-                        $this->requestd2p_model->add_request($this->upload->data('file_name')['file_name']);
+                        //$data = array('upload_data' => $this->upload->data());						
+                        $this->requestd2p_model->add_request($file1,$file2,$file3,$file4,$file5,$file6);
 		 				$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
 		 				redirect('index.php/request_d2p/request_d2p_list');
-                }			
+				}	
+				//print_r($data);		
 				
 		 }
 	}
