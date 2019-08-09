@@ -12,9 +12,15 @@ class View_requestd2p extends CI_Controller {
 	public function view_requestd2p_list (){
 		$data['page']		= "l_view_requestd2p";	
 		$data['view_request'] = $this->view_requestd2p_model->getAllViewRequest();
-		$this->load->view('admin/aaa', $data);
-	}
 
+		if ($this->input->post('q')){
+			$data['view_request'] =  $this->view_requestd2p_model->searchRequest();
+		}
+
+		
+		$this->load->view('admin/aaa', $data);
+
+	}
 
 // APPROVAL LIST REQUEST D2P
 

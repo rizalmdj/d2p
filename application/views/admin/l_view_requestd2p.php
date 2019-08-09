@@ -9,8 +9,8 @@
 			</div>
 		<div class="navbar-collapse collapse navbar-inverse-collapse" style="margin-right: -20px">
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/master_data_depertemen/Search">
-					<input type="text" class="form-control" name="q" style="width: 200px" placeholder=" Keyword . . . ." required>
+				<form class="navbar-form navbar-left" method="post">
+					<input type="text" class="form-control" name="q" style="width: 200px" placeholder= Keyword . . . ." required>
 					<button type="submit" class="btn btn-success"><i class="icon-search icon-white"> </i> Search</button>
 				</form>
 			</ul>
@@ -55,6 +55,7 @@
 		} else {
 			$no 	= ($this->uri->segment(4) + 1);
 			$i = 1;
+			// var_dump($view_request);
 			foreach ($view_request as $b) {
 		?>
 		<tr align="center">
