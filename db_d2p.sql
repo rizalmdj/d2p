@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2019 at 11:50 AM
+-- Generation Time: Jul 11, 2019 at 10:41 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -36,22 +36,23 @@ CREATE TABLE `menu` (
   `url` varchar(70) NOT NULL,
   `is_active` varchar(1) NOT NULL,
   `AI` int(11) NOT NULL,
-  `dropdown` varchar(1) NOT NULL
+  `dropdown` varchar(1) NOT NULL,
+  `dropdown_list` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id`, `id_parent`, `icon`, `nama_menu`, `url`, `is_active`, `AI`, `dropdown`) VALUES
-(1, 0, 'icon-home icon-white', 'Home', 'index.php/admin', 'Y', 1, 'N'),
-(2, 0, 'icon-book icon-white', 'Request D2P', 'index.php/request_d2p/request_d2p_list', 'Y', 2, 'N'),
-(3, 0, 'icon-tag icon-white', 'View Request', 'index.php/view_requestd2p/view_requestd2p_list', 'Y', 3, 'N'),
-(5, 0, 'icon-home icon-white', 'Master', '', 'Y', 4, 'Y'),
-(6, 5, '', 'Data Departement', 'index.php/master_data/master_data_departemen', 'Y', 5, 'N'),
-(7, 5, '', 'Data Divisi', 'index.php/master_divisi/master_data_divisi', 'Y', 6, 'N'),
-(8, 5, '', 'Role Access', 'index.php/m_role_access/master_role_access', 'Y', 7, 'N'),
-(9, 5, '', 'Data User', 'index.php/m_data_user/master_data_user', 'Y', 8, 'N');
+INSERT INTO `menu` (`id`, `id_parent`, `icon`, `nama_menu`, `url`, `is_active`, `AI`, `dropdown`, `dropdown_list`) VALUES
+(1, 0, 'icon-home icon-white', 'Home', 'index.php/admin', 'Y', 1, 'N', 'N'),
+(2, 0, 'icon-book icon-white', 'Request D2P', 'index.php/request_d2p/request_d2p_list', 'Y', 2, 'N', 'N'),
+(3, 0, 'icon-tag icon-white', 'View Request', 'index.php/view_requestd2p/view_requestd2p_list', 'Y', 3, 'N', 'N'),
+(5, 0, 'icon-home icon-white', 'Master', '', 'Y', 4, 'Y', 'N'),
+(6, 5, '', 'Data Departement', 'index.php/master_data/master_data_departemen', 'Y', 5, 'Y', 'Y'),
+(7, 5, '', 'Data Divisi', 'index.php/master_divisi/master_data_divisi', 'Y', 6, 'Y', 'Y'),
+(8, 5, '', 'Role Access', 'index.php/m_role_access/master_role_access', 'Y', 7, 'Y', 'Y'),
+(9, 5, '', 'Data User', 'index.php/m_data_user/master_data_user', 'Y', 8, 'Y', 'Y');
 
 -- --------------------------------------------------------
 
@@ -145,11 +146,7 @@ CREATE TABLE `tb_departemen` (
 
 INSERT INTO `tb_departemen` (`id_dep`, `id_divisi`, `nama_departemen`) VALUES
 (1, 1, 'O&M Application Platform and Database'),
-(2, 1, 'Customer Care'),
-(3, 2, 'System Development'),
-(4, 2, 'System Integration'),
-(5, 3, 'Port Solution'),
-(6, 3, 'E-Payment Solution');
+(2, 1, 'Customer Care');
 
 -- --------------------------------------------------------
 
@@ -168,8 +165,7 @@ CREATE TABLE `tb_divisi` (
 
 INSERT INTO `tb_divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'Operation and Service Delivery'),
-(2, 'System Development and Integration'),
-(3, 'Product Management');
+(2, 'System Development and Integration');
 
 -- --------------------------------------------------------
 
@@ -217,10 +213,9 @@ CREATE TABLE `tb_role_access` (
 --
 
 INSERT INTO `tb_role_access` (`id_role_access`, `role_access`) VALUES
-(1, 'ADMIN'),
-(2, 'STAFF'),
-(3, 'MANAGER'),
-(4, 'GENERAL MANAGER');
+(23, 'STAFF'),
+(25, 'GENERAL MANAGER BERRY'),
+(26, 'MANAGER');
 
 -- --------------------------------------------------------
 
@@ -247,7 +242,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `role_access`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
-('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'staff', 'Y', 1, 0, 0);
+('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'staff', 'Y', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -297,8 +292,7 @@ CREATE TABLE `tr_request` (
 --
 
 INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_manager`, `keterangan`, `req_date`, `created_date`, `status_req`, `update_date`, `upload_file`, `created_by`) VALUES
-(1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '2', '0000-00-00', '0', 1),
-(3, 'WAHYU', 'BARU', 'WAHYU', 'WAHYU', 'WAHYU', '2019-07-06', '0000-00-00', '2', '0000-00-00', '0', 1);
+(1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '1', '0000-00-00', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -503,13 +497,19 @@ ALTER TABLE `suratmasuk`
 -- AUTO_INCREMENT for table `tb_departemen`
 --
 ALTER TABLE `tb_departemen`
-  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_divisi`
 --
 ALTER TABLE `tb_divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_role_access`
+--
+ALTER TABLE `tb_role_access`
+  MODIFY `id_role_access` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
@@ -521,7 +521,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tr_request`
 --
 ALTER TABLE `tr_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `t_admin`

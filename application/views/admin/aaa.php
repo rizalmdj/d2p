@@ -100,39 +100,43 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-
           <ul class="nav navbar-nav">	
-          	<?php 
-          		$menu = $this->db->query("SELECT * FROM  menu where id_parent =0");
-          		foreach ($menu->result_array() as $row) {
-          			
-          			if ($row['dropdown'] == 'Y') {
 
-          			echo'	<li class="dropdown">
-		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="'.$row['icon'].'">
-		          				</i> '.$row['nama_menu'].' <span class="caret"></span></a>
-		          				<ul class ="dropdown-menu" aria-labelledby="themes">';
+          	<?php  
+                            $menu = $this->db->query("SELECT * FROM menu where id_parent=0 AND dropdown = 'N' ");
+                            foreach($menu->result_array() as $row)
+                             {
+                             
+             ?>
+			<li><a href="<?php echo base_url(); echo $row['url'];?>"><i class="<?php echo $row['icon'];?>"> </i> 
+				<?php  echo $row['nama_menu']; ?></a></li>
 
-		          				$a = $this->db->query("SELECT * FROM  menu where id_parent =".$row['id']."");
+			<?php } ?>
 
-		          				foreach ($a->result_array() as $r) {
-		          					echo '<li><a tabindex="-1" href="'.base_url($r['url']).'"> '.$r['nama_menu'].'</a></li>';
+				<?php  
+                            $menu = $this->db->query("SELECT * FROM menu where id_parent=0 AND dropdown = 'Y' ");
+                            foreach($menu->result_array() as $row)
+                             {
+                             	?>
 
-		          				}
+					<li class="dropdown">
 
-          			echo '</ul>
-          				</li>';
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-file icon-white"> </i> <?php echo $row['nama_menu']?> <span class="caret"></span></a>
 
-          				}
+                  	<ul class="dropdown-menu" aria-labelledby="themes">
+                  	<?php         
+                  				$child = $row['id'];   	
+                             	$menu_anak = $this->db->query("SELECT * FROM menu where id_parent = '$child' ");
+                             		foreach($menu_anak->result_array() as $rows)
+                             		{
+                             			?>
+                             			<li><a tabindex="-1" href="<?php echo base_url(); echo $rows['url'];?>"> <?php echo $rows['nama_menu']?></a></li>	
 
-          				else {
+                             		<?php }
+                             	}
 
-          					echo '<li><a href="'.base_url($row['url']).'"><i class="'.$row['icon'].'"> </i> '.$row['nama_menu'].' 
-         					</a></li>';
-          				
-          				}
-          			}
-	         	?>
+                            
+             		?>  
               
               </ul>
             </li>
