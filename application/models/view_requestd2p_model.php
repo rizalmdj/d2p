@@ -53,5 +53,4 @@ class View_requestd2p_model extends CI_Model {
         return $this->db->get()->result();
         // var_dump($this->db->like('name', $q));die;
     } 
-    //
 }
