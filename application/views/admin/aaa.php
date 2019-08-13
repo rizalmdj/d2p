@@ -85,33 +85,45 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">	
-			<li><a href="<?php echo base_url(); ?>index.php/admin"><i class="icon-home icon-white"> </i> Home</a></li>
-			<?php
+          	<?php
 			if ($this->session->userdata('admin_level') == "Super Admin") {
 			?>
+          	<?php 
+          		$menu = $this->db->query("SELECT * FROM  menu where id_parent =0");
+          		foreach ($menu->result_array() as $row) {
+          			
+          			if ($row['dropdown'] == 'Y') {
 
-			<li>
-              <a href="<?php echo base_url(); ?>index.php/request_d2p/request_d2p_list" id="themes"><i class="icon-book icon-white"> </i> Request D2P </a>
-            </li>
+          			echo'	<li class="dropdown">
+		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="'.$row['icon'].'">
+		          				</i> '.$row['nama_menu'].' <span class="caret"></span></a>
+		          				<ul class ="dropdown-menu" aria-labelledby="themes">';
 
-            <li>
-				<a href="<?php echo base_url(); ?>index.php/view_requestd2p/view_requestd2p_list" id="themes"><i class="icon-tag icon-white"> </i> View Request </a>
-				
-            </li>				
+		          				$a = $this->db->query("SELECT * FROM  menu where id_parent =".$row['id']."");
 
-			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-file icon-white"> </i> Master <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/master_data/master_data_departemen"> Data Departemen</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/master_divisi/master_data_divisi"> Data Divisi</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/admin/klas_surat"> Data Jabatan</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/m_data_user/master_data_user"> Data User</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/admin/klas_surat"> Data Karyawan</a></li>
+		          				foreach ($a->result_array() as $r) {
+		          					echo '<li><a tabindex="-1" href="'.base_url($r['url']).'"> '.$r['nama_menu'].'</a></li>';
+
+		          				}
+
+          			echo '</ul>
+          				</li>';
+
+          				}
+
+          				else {
+
+          					echo '<li><a href="'.base_url($row['url']).'"><i class="'.$row['icon'].'"> </i> '.$row['nama_menu'].' 
+         					</a></li>';
+          				
+          				}
+          			}
+	         	?>
+              
               </ul>
             </li>
-		
 
-			<?php } else if ($this->session->userdata('admin_level') == "Requester") { ?>
+            	<?php } else if ($this->session->userdata('admin_level') == "Requester") { ?>
 				<li>
 				<a href="<?php echo base_url(); ?>index.php/request_d2p/request_d2p_list" id="themes"><i class="icon-book icon-white"> </i> Request D2P </a>			
             	</li>			
