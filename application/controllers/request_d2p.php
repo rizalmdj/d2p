@@ -12,6 +12,12 @@ class Request_d2p extends CI_Controller {
 	public function request_d2p_list (){
 		$data['page']		= "l_request_d2p";	
 		$data['request'] = $this->requestd2p_model->getAllRequest();				
+
+		if ($this ->input->post('a')){
+
+			$data['request'] = $this->requestd2p_model->searchRequestd2p();
+		}
+
 		$this->load->view('admin/aaa', $data);
 	}
 
