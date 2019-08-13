@@ -36,9 +36,4 @@ class View_requestd2p extends CI_Controller {
 		redirect('index.php/view_requestd2p/view_requestd2p_list');
 	}
 
-
-
-//
-
-
 }
