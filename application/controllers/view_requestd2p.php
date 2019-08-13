@@ -14,7 +14,7 @@ class View_requestd2p extends CI_Controller {
 		$data['view_request'] = $this->view_requestd2p_model->getAllViewRequest();
 
 		if ($this->input->post('q')){
-			$data['view_request'] =  $this->view_requestd2p_model->searchRequest();
+			$data['view_request'] =  $this->view_requestd2p_model->searchViewRequest();
 		}
 
 		
