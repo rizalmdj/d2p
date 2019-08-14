@@ -46,6 +46,9 @@ class Departemen_model extends CI_Model {
     	
     }
 
+
+//  ADD DEPARTEMENT
+
 	public function addDepartemen(){
 		$nama_divisi = $this->input->post('nama_divisi',true);
 		$data = array(
@@ -64,11 +67,30 @@ class Departemen_model extends CI_Model {
 
 	}
 
+//  DELETE DEPARTEMENT
+
 	public function delete_departemen($id_dep, $table){
 		$this->db->where('id_dep', $id_dep);
 		$this->db->delete($table);
 
 	}  
+
+//  SEARCH MASTER DEPARTMENT
+
+    public function searchMasterDepartement() {
+        $q = $this->input->post('q',true);
+
+        $this->db->select ('*');
+        $this->db->from('tb_departemen');
+        $this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
+        $this->db->like('nama_departemen', $q);
+        $this->db->or_like('nama_divisi', $q);    
+
+        return $this->db->get()->result();
+        // var_dump($this->db->like('name', $a));die;
+
+
+    }
     
 
 }

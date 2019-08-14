@@ -9,10 +9,13 @@ class M_data_user extends CI_Controller {
 	public function master_data_user (){
 		$data['page']		= "l_master_user";	
 		$data['datauser'] = $this->m_user_model->getAlluser();
+
+		if (!empty($this ->input->post('q'))){
+
+			$data['datauser'] = $this->m_user_model->searchMasterDataUser();
+		}
+
 		$this->load->view('admin/aaa', $data);
 	}
-
-	
-
 
 }
