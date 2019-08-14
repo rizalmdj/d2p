@@ -17,7 +17,7 @@
 
 				value="<?php echo $divisi['id_divisi'] ?>">
 
-					<tr><td width="20%">nama divisi</td><td><b><input type="text" name="nama_divisi" 
+					<tr><td width="20%">Nama Divisi</td><td><b><input type="text" name="nama_divisi" 
 						value="<?php echo $divisi['nama_divisi']; ?>" 
 			
 				style="width: 400px" class="form-control" required></b></td></tr>
