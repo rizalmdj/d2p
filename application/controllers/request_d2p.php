@@ -13,7 +13,7 @@ class Request_d2p extends CI_Controller {
 		$data['page']		= "l_request_d2p";	
 		$data['request'] = $this->requestd2p_model->getAllRequest();				
 
-		if ($this ->input->post('a')){
+		if (!empty($this ->input->post('a'))){
 
 			$data['request'] = $this->requestd2p_model->searchRequestd2p();
 		}

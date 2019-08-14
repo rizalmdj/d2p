@@ -64,5 +64,23 @@ class M_divisi_model extends CI_Model {
         $this->db->delete($table);
 
     }  
+
+//  SEARCH REQUEST D2P
+
+    public function searchMasterDivisi() {
+        $q = $this->input->post('q',true);
+
+        $this->db->select('*');
+        $this->db->from('tb_divisi');
+        $this->db->like('nama_divisi', $q);    
+
+        return $this->db->get()->result();
+        // var_dump($this->db->like('name', $a));die;
+
+
+    }
+
+
+
 }
 

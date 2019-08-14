@@ -11,6 +11,12 @@ class Master_divisi extends CI_Controller {
 	public function master_data_divisi (){
 		$data['page']		= "l_divisi";
 		$data['divisi'] = $this->m_divisi_model->getAllDivisi();
+
+		if (!empty($this ->input->post('q'))){
+
+			$data['divisi'] = $this->m_divisi_model->searchMasterDivisi();
+		}
+
 		$this->load->view('admin/aaa', $data);
 	}
 
