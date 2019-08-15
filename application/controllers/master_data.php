@@ -12,6 +12,13 @@ class Master_data extends CI_Controller {
 	public function master_data_departemen (){
 		$data['page']		= "l_departemen";	
 		$data['departemen'] = $this->departemen_model->getAllDepDivisi();
+
+		if (!empty($this ->input->post('q'))){
+
+			$data['departemen'] = $this->departemen_model->searchMasterDepartement();
+		}
+
+
 		$this->load->view('admin/aaa', $data);
 	}
 

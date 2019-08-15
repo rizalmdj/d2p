@@ -10,7 +10,11 @@
 		<div class="navbar-collapse collapse navbar-inverse-collapse" style="margin-right: -20px">
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form navbar-left" method="post">
+<<<<<<< HEAD
 					<input type="text" class="form-control" name="q" style="width: 200px" placeholder= Keyword . . . ." required>
+=======
+					<input type="text" class="form-control" name="q" style="width: 200px" placeholder= "Keyword . . . . ">
+>>>>>>> 132e91f0a3b46432a32f89fcd3965b294f5cef28
 					<button type="submit" class="btn btn-success"><i class="icon-search icon-white"> </i> Search</button>
 				</form>
 			</ul>
@@ -104,3 +108,4 @@
 </table>
 <!-- <center><ul class="pagination"><?php echo $pagi; ?></ul></center> -->
 </div>
+

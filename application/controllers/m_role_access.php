@@ -12,6 +12,12 @@ class M_role_access extends CI_Controller {
 	public function master_role_access (){
 		$data['page']		= "l_role_access";	
 		$data['role_access'] = $this->role_access_model->getAllRoleAccess();
+
+		if (!empty($this ->input->post('q'))){
+
+			$data['role_access'] = $this->role_access_model->searchRoleAccess();
+		}
+
 		$this->load->view('admin/aaa', $data);
 	}
 

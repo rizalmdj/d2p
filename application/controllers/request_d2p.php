@@ -12,6 +12,12 @@ class Request_d2p extends CI_Controller {
 	public function request_d2p_list (){
 		$data['page']		= "l_request_d2p";	
 		$data['request'] = $this->requestd2p_model->getAllRequest();				
+
+		if (!empty($this ->input->post('a'))){
+
+			$data['request'] = $this->requestd2p_model->searchRequestd2p();
+		}
+
 		$this->load->view('admin/aaa', $data);
 	}
 
@@ -113,11 +119,58 @@ class Request_d2p extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			redirect('index.php/request_d2p/edit_request_d2p');
 
-		 }else {
+			}else {
+				
+			$config['upload_path']          = './upload/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';                
+			$this->load->library('upload', $config);
+			$j = 0;
+				if($this->upload->do_upload('upload_file')){
+					$j++;	
+					$data = array('upload_data' => $this->upload->data());
+					$file1 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file1')){
+					$j++;	
+					$data = array('upload_data1' => $this->upload->data());
+					$file2 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file2')){
+					$j++;	
+					$data = array('upload_data2' => $this->upload->data());
+					$file3 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file3')){
+					$j++;	
+					$data = array('upload_data3' => $this->upload->data());
+					$file4 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file4')){
+					$j++;	
+					$data = array('upload_data4' => $this->upload->data());
+					$file5 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file5')){
+					$j++;	
+					$data = array('upload_data5' => $this->upload->data());
+					$file6 = $this->upload->data('file_name')['file_name'];
+				}
+
+                if ( $j < 6)
+                {
+                        $error = array('error' => $this->upload->display_errors());
+
+                        $this->load->view('upload_form', $error);
+
+		 }
+		 else 
+		 {
 		 	$this->requestd2p_model->edit_request();
 		 	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been edited</div>");
 		 	redirect('index.php/request_d2p/request_d2p_list');
 		 }
+	}
+
 	}
 
 // DELETE REQUEST D2P

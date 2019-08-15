@@ -46,7 +46,7 @@
 
 			<tr><td width="20%">Rollback Plan</td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="20%">Release notes</td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="20%">Release Notes</td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
 
 			<tr><td colspan="2">
 			

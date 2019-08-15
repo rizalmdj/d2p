@@ -38,7 +38,13 @@ class View_requestd2p_model extends CI_Model {
 
     } 
 
+<<<<<<< HEAD
    public function searchRequest() {
+=======
+//  SEARCH VIEW REQUEST
+
+   public function searchViewRequest() {
+>>>>>>> 132e91f0a3b46432a32f89fcd3965b294f5cef28
         $q = $this->input->post('q',true);
 
         $this->db->select('*');
@@ -53,5 +59,9 @@ class View_requestd2p_model extends CI_Model {
         return $this->db->get()->result();
         // var_dump($this->db->like('name', $q));die;
     } 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 132e91f0a3b46432a32f89fcd3965b294f5cef28
 }

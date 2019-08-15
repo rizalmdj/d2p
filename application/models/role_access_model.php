@@ -75,5 +75,20 @@ class Role_access_model extends CI_Model {
         $this->db->where('id_role_access',$id_role_access);
         $this->db->delete($table);
     }
+
+//  SEARCH REQUEST D2P
+
+    public function searchRoleAccess() {
+        $q = $this->input->post('q',true);
+
+        $this->db->select('*');
+        $this->db->from('tb_role_access');
+        $this->db->like('role_access', $q);        
+
+        return $this->db->get()->result();
+        // var_dump($this->db->like('name', $a));die;
+
+    }
+
     
 }

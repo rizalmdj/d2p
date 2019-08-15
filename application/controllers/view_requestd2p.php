@@ -13,8 +13,13 @@ class View_requestd2p extends CI_Controller {
 		$data['page']		= "l_view_requestd2p";	
 		$data['view_request'] = $this->view_requestd2p_model->getAllViewRequest();
 
+<<<<<<< HEAD
 		if ($this->input->post('q')){
 			$data['view_request'] =  $this->view_requestd2p_model->searchRequest();
+=======
+		if (!empty($this->input->post('q'))){
+			$data['view_request'] =  $this->view_requestd2p_model->searchViewRequest();
+>>>>>>> 132e91f0a3b46432a32f89fcd3965b294f5cef28
 		}
 
 		
@@ -35,10 +40,5 @@ class View_requestd2p extends CI_Controller {
 		$this->view_requestd2p_model->reject_request_d2p($id,'tr_request');
 		redirect('index.php/view_requestd2p/view_requestd2p_list');
 	}
-
-
-
-
-
 
 }

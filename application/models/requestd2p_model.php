@@ -117,4 +117,25 @@ class Requestd2p_model extends CI_Model {
 
     }
 
+//  SEARCH REQUEST D2P
+
+    public function searchRequestd2p() {
+        $a = $this->input->post('a',true);
+
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status', 'tr_request.status_req = m_status.id_status');
+        $this->db->like('name', $a);
+        $this->db->or_like('project_name', $a);
+        $this->db->or_like('project_id', $a);
+        $this->db->or_like('status_name', $a);
+        $this->db->or_like('req_date', $a);
+        
+
+        return $this->db->get()->result();
+        // var_dump($this->db->like('name', $a));die;
+
+
+    }
+
 }

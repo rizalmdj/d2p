@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2019 at 11:50 AM
+-- Generation Time: Aug 14, 2019 at 11:51 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -235,8 +235,7 @@ CREATE TABLE `tb_user` (
   `id_user` int(11) NOT NULL,
   `realname` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `role_access` varchar(20) NOT NULL,
-  `status` varchar(1) NOT NULL,
+  `status` varchar(11) NOT NULL,
   `id_role_access` int(2) NOT NULL,
   `id_divisi` int(2) NOT NULL,
   `id_dep` int(2) NOT NULL
@@ -246,8 +245,8 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `role_access`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
-('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'staff', 'Y', 1, 0, 0);
+INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
+('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'ACTIVE', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -298,7 +297,8 @@ CREATE TABLE `tr_request` (
 
 INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_manager`, `keterangan`, `req_date`, `created_date`, `status_req`, `update_date`, `upload_file`, `created_by`) VALUES
 (1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '2', '0000-00-00', '0', 1),
-(3, 'WAHYU', 'BARU', 'WAHYU', 'WAHYU', 'WAHYU', '2019-07-06', '0000-00-00', '2', '0000-00-00', '0', 1);
+(3, 'WAHYU', 'BARU', 'WAHYU', 'WAHYU', 'WAHYU', '2019-07-06', '0000-00-00', '5', '0000-00-00', '0', 1),
+(4, 'Administrator', 'waiting', 'SDSDS', 'SDSDS', 'BARU', '2019-07-03', '2019-07-25', '5', '0000-00-00', 'TIMBANGAN_1.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -485,7 +485,7 @@ ALTER TABLE `t_surat_keputusan`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `AI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `AI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ref_klasifikasi`
@@ -521,7 +521,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tr_request`
 --
 ALTER TABLE `tr_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_admin`
