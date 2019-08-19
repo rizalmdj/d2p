@@ -17,24 +17,24 @@
 
 				value="<?php echo $data[0]->id ?>">
 
-					<tr><td width="20%">Name</td><td><b><input type="text" name="name" value="<?php echo $data[0]->name ?>"
+					<tr><td width="35%">Name</td><td><b><input type="text" name="name" value="<?php echo $data[0]->name ?>"
 						
 					required disabled style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Project Name</td><td><b><textarea name="project_name" 
+					<tr><td width="35%">Project Name</td><td><b><textarea name="project_name" 
 
 					required style="width: 400px; height: 85px" class="form-control"><?php echo $data[0]->project_name?></textarea></b></td></tr>			
 
-					<tr><td width="20%">Project ID</td><td><b><input type="text" name="project_id" value="<?php echo $data[0]->project_id ?>"
+					<tr><td width="35%">Project ID</td><td><b><input type="text" name="project_id" value="<?php echo $data[0]->project_id ?>"
 					required style="width: 400px" class="form-control"></b></td></tr>
 
 					
-					<tr><td width="20%">Project Manager</td><td><b><input type="text" name="project_manager" value="<?php echo $data[0]->project_manager ?>"
+					<tr><td width="35%">Project Manager</td><td><b><input type="text" name="project_manager" value="<?php echo $data[0]->project_manager ?>"
 					required  style="width: 400px" class="form-control"></b></td></tr></tr>			
 
-					<tr><td width="20%">Keterangan</td><td><b><input type="text" name="keterangan" value="<?php echo $data[0]->keterangan ?>" style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">Keterangan</td><td><b><input type="text" name="keterangan" value="<?php echo $data[0]->keterangan ?>" style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Date</td><td><b><input type="date" name="req_date" value="<?php echo $data[0]->req_date ?>" placeholder="DD-MM-YYYY" required style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">Date</td><td><b><input type="date" name="req_date" value="<?php echo $data[0]->req_date ?>" placeholder="DD-MM-YYYY" required style="width: 400px" class="form-control"></b></td></tr>
 		
 			</td></tr>
 		</table>
@@ -45,26 +45,30 @@
 
 		<table width="200%" class="table-form">
 
-					<tr><td width="20%">Dokumen SIT</td><td><b><input type="file" name="upload_file"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(1) Dokumen SIT</td><td><b><input type="file" name="upload_file1"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Dokumen UAT</td><td><b><input type="file" name="upload_file1"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(2) Dokumen UAT</td><td><b><input type="file" name="upload_file2"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">List Object</td><td><b><input type="file" name="upload_file2"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(3) List Object</td><td><b><input type="file" name="upload_file3"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Deployment Guide</td><td><b><input type="file" name="upload_file3"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(4) Deployment Guide</td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Rollback Plan</td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(5) Rollback Plan</td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td width="20%">Release Notes</td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
+					<tr><td width="35%">(6) Release Notes</td><td><b><input type="file" name="upload_file6"  style="width: 400px" class="form-control"></b></td></tr>
 
-					<tr><td colspan="2">
-					
-					<br><button type="submit" class="btn btn-success"><i class="icon icon-ok icon-white"></i> Save</button>
-					<a href="<?php echo base_URL(); ?>index.php/request_d2p/request_d2p_list" class="btn btn-danger"><i class="icon icon-arrow-left icon-white"></i> Back</a>
-					</td></tr>
-
- 
 		</table>
+
+		<table>
+
+			<tr><td width="200%"><b><i><text style="color: red;" >*File Upload Only GIF, JPEG, JPG, PNG, PDF</i></b></td></tr>
+
+			<tr><td colspan="2">
+			
+			<br><button type="submit" class="btn btn-success"><i class="icon icon-ok icon-white"></i> Save</button>
+			<a href="<?php echo base_URL(); ?>index.php/request_d2p/request_d2p_list" class="btn btn-danger"><i class="icon icon-arrow-left icon-white"></i> Back</a></td>
+		</table>
+
 	</div>	
 	</div>
 
