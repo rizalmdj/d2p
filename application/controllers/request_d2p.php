@@ -44,37 +44,37 @@ class Request_d2p extends CI_Controller {
 		 }else {
 				
 			$config['upload_path']          = './upload/';
-            $config['allowed_types']        = 'gif|jpg|png';                
+            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf';                
 			$this->load->library('upload', $config);
 			$j = 0;
-				if($this->upload->do_upload('upload_file')){
-					$j++;	
-					$data = array('upload_data' => $this->upload->data());
-					$file1 = $this->upload->data('file_name')['file_name'];
-				} 
 				if($this->upload->do_upload('upload_file1')){
 					$j++;	
 					$data = array('upload_data1' => $this->upload->data());
-					$file2 = $this->upload->data('file_name')['file_name'];
+					$file1 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file2')){
 					$j++;	
 					$data = array('upload_data2' => $this->upload->data());
-					$file3 = $this->upload->data('file_name')['file_name'];
+					$file2 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file3')){
 					$j++;	
 					$data = array('upload_data3' => $this->upload->data());
-					$file4 = $this->upload->data('file_name')['file_name'];
+					$file3 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file4')){
 					$j++;	
 					$data = array('upload_data4' => $this->upload->data());
-					$file5 = $this->upload->data('file_name')['file_name'];
+					$file4 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file5')){
 					$j++;	
 					$data = array('upload_data5' => $this->upload->data());
+					$file5 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file6')){
+					$j++;	
+					$data = array('upload_data6' => $this->upload->data());
 					$file6 = $this->upload->data('file_name')['file_name'];
 				}
 
@@ -122,37 +122,37 @@ class Request_d2p extends CI_Controller {
 			}else {
 				
 			$config['upload_path']          = './upload/';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';                
+            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf';
 			$this->load->library('upload', $config);
 			$j = 0;
-				if($this->upload->do_upload('upload_file')){
-					$j++;	
-					$data = array('upload_data' => $this->upload->data());
-					$file1 = $this->upload->data('file_name')['file_name'];
-				} 
 				if($this->upload->do_upload('upload_file1')){
 					$j++;	
 					$data = array('upload_data1' => $this->upload->data());
-					$file2 = $this->upload->data('file_name')['file_name'];
+					$file1 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file2')){
 					$j++;	
 					$data = array('upload_data2' => $this->upload->data());
-					$file3 = $this->upload->data('file_name')['file_name'];
+					$file2 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file3')){
 					$j++;	
 					$data = array('upload_data3' => $this->upload->data());
-					$file4 = $this->upload->data('file_name')['file_name'];
+					$file3 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file4')){
 					$j++;	
 					$data = array('upload_data4' => $this->upload->data());
-					$file5 = $this->upload->data('file_name')['file_name'];
+					$file4 = $this->upload->data('file_name')['file_name'];
 				} 
 				if($this->upload->do_upload('upload_file5')){
 					$j++;	
 					$data = array('upload_data5' => $this->upload->data());
+					$file5 = $this->upload->data('file_name')['file_name'];
+				} 
+				if($this->upload->do_upload('upload_file6')){
+					$j++;	
+					$data = array('upload_data6' => $this->upload->data());
 					$file6 = $this->upload->data('file_name')['file_name'];
 				}
 

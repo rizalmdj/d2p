@@ -51,7 +51,7 @@ class Requestd2p_model extends CI_Model {
 
 // ADD REQUEST D2P MODEL    
 
-    public function add_request($filename,$filename1,$filename2,$filename3,$filename4,$filename5) {
+    public function add_request($filename1,$filename2,$filename3,$filename4,$filename5,$filename6) {
         $var = $this->session->userdata;		
         $data = array(
             "name" => $var['nama'],
@@ -63,12 +63,12 @@ class Requestd2p_model extends CI_Model {
             "created_date" => date('Y-m-d H:i:s'),
             "status_req" => '1',
             "update_date" => date('Y-m-d H:i:s'),
-            "upload_file" => $filename,
             "upload_file1" => $filename1,
             "upload_file2" => $filename2,
             "upload_file3" => $filename3,
             "upload_file4" => $filename4,
             "upload_file5" => $filename5,
+            "upload_file6" => $filename6,
             "created_by" => $var['id']
         );
         $this->db->insert('tr_request', $data);
