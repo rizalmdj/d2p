@@ -20,7 +20,7 @@ class View_requestd2p_model extends CI_Model {
 
     public function approval_request_d2p() {
         $data = array(
-            "status_req" => '2',
+            "status_req" => '5',
             "update_date" => $this->input->post(NOW(),true)
         );
         $this->db->update('tr_request', $data);
@@ -31,7 +31,7 @@ class View_requestd2p_model extends CI_Model {
 
    public function reject_request_d2p() {
         $data = array(
-            "status_req" => '3',
+            "status_req" => '8',
             "update_date" => $this->input->post(NOW(),true)
         );
         $this->db->update('tr_request', $data);

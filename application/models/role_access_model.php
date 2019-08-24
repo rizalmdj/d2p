@@ -42,6 +42,22 @@ class Role_access_model extends CI_Model {
         }
     }
 
+//      getRoleaccess
+    
+        public function getRoleaccess($role_access){
+        $this->db->select('*');
+        $this->db->from('tb_role_access');
+        $this->db->where('role_access', $role_access);
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result()[0]->id_role_access;
+        } else {
+            return array();
+        }
+
+    }
+
 
 // EDIT ROLE ACCESS BY ID MODEL
 

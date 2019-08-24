@@ -32,6 +32,21 @@ class M_divisi_model extends CI_Model {
             return array();
         }
     }
+
+    public function getidDivisi($nama_divisi){
+        $nama_divisi = $this->input->post('nama_divisi',true);
+        $this->db->select('*');
+        $this->db->from('tb_divisi');
+        $this->db->where('nama_divisi', $nama_divisi);
+     
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0){
+            return $query->result()[0]->id_divisi;
+        } else {
+            return array();
+        }
+    }
     
         
 
