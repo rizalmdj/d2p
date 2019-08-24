@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2019 at 11:51 AM
+-- Generation Time: Aug 24, 2019 at 08:15 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -51,7 +51,7 @@ INSERT INTO `menu` (`id`, `id_parent`, `icon`, `nama_menu`, `url`, `is_active`, 
 (6, 5, '', 'Data Departement', 'index.php/master_data/master_data_departemen', 'Y', 5, 'N'),
 (7, 5, '', 'Data Divisi', 'index.php/master_divisi/master_data_divisi', 'Y', 6, 'N'),
 (8, 5, '', 'Role Access', 'index.php/m_role_access/master_role_access', 'Y', 7, 'N'),
-(9, 5, '', 'Data User', 'index.php/m_data_user/master_data_user', 'Y', 8, 'N');
+(9, 5, '', 'Data User', 'index.php/m_data_user/master_user', 'Y', 8, 'N');
 
 -- --------------------------------------------------------
 
@@ -70,13 +70,13 @@ CREATE TABLE `m_status` (
 
 INSERT INTO `m_status` (`id_status`, `status_name`) VALUES
 (1, 'Draft'),
-(2, 'Waiting Approval Manager'),
+(2, 'Waiting Approval Manager User'),
 (3, 'Waiting Approval Manager Operation'),
 (4, 'Waiting Approval GM Operation'),
 (5, 'Approved GM Operation'),
-(6, 'Reject Manager'),
-(7, 'Reject Manager Operation'),
-(8, 'Reject GM Operation');
+(6, 'Reject by Manager'),
+(7, 'Reject by Manager Operation'),
+(8, 'Reject by GM Operation');
 
 -- --------------------------------------------------------
 
@@ -246,7 +246,9 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_karyawan`, `user_name`, `password`, `id_user`, `realname`, `email`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
-('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'ACTIVE', 1, 1, 1);
+('11941124', 'rolasetiaputra', '24111994', 1, 'Rola Setia Putra', 'rola@ilcs.co.id', 'ACTIVE', 1, 1, 1),
+('19055050', 'faizsatria', '66464646', 2, 'Faiz Satria', 'faiz@ilcs.co.id', 'ACTIVE', 1, 1, 1),
+('20192010', 'berrymaulidi', '8181818', 3, 'Berry Maulidi', 'berry@ilcs.co.id', 'DEACTIVE', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -287,7 +289,7 @@ CREATE TABLE `tr_request` (
   `created_date` date NOT NULL,
   `status_req` varchar(5) NOT NULL,
   `update_date` date DEFAULT NULL,
-  `upload_file` varchar(100) NOT NULL,
+  `id_upload_file` int(11) NOT NULL,
   `created_by` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -295,10 +297,35 @@ CREATE TABLE `tr_request` (
 -- Dumping data for table `tr_request`
 --
 
-INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_manager`, `keterangan`, `req_date`, `created_date`, `status_req`, `update_date`, `upload_file`, `created_by`) VALUES
-(1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '2', '0000-00-00', '0', 1),
-(3, 'WAHYU', 'BARU', 'WAHYU', 'WAHYU', 'WAHYU', '2019-07-06', '0000-00-00', '5', '0000-00-00', '0', 1),
-(4, 'Administrator', 'waiting', 'SDSDS', 'SDSDS', 'BARU', '2019-07-03', '2019-07-25', '5', '0000-00-00', 'TIMBANGAN_1.JPG', 1);
+INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_manager`, `keterangan`, `req_date`, `created_date`, `status_req`, `update_date`, `id_upload_file`, `created_by`) VALUES
+(1, 'ROLA', 'NPKTOS BANTEN', '123456789', 'NICO', 'PATCH1', '2019-07-05', '0000-00-00', '8', '0000-00-00', 1, 1),
+(2, 'BERRY', 'BARU', 'BERRY', 'BERRY', 'BEBRRY ', '2019-07-06', '0000-00-00', '8', '0000-00-00', 2, 1),
+(3, 'REGIA', 'REGIA BARU', 'SDSDS', 'SDSDS', 'BARU', '2019-07-03', '2019-07-25', '8', '0000-00-00', 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tr_upload_file`
+--
+
+CREATE TABLE `tr_upload_file` (
+  `id` int(11) NOT NULL,
+  `upload_file1` varchar(50) NOT NULL,
+  `upload_file2` varchar(50) NOT NULL,
+  `upload_file3` varchar(50) NOT NULL,
+  `upload_file4` varchar(50) NOT NULL,
+  `upload_file5` varchar(50) NOT NULL,
+  `upload_file6` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tr_upload_file`
+--
+
+INSERT INTO `tr_upload_file` (`id`, `upload_file1`, `upload_file2`, `upload_file3`, `upload_file4`, `upload_file5`, `upload_file6`) VALUES
+(1, 'rola1.jpg', 'rola2.jpg', 'rola3.jpg', 'rola4.jpg', 'rola5.jpg', 'rola6.jpg'),
+(2, 'berry1.jpg', 'berry2.jpg', 'berry3.jpg', 'berry4.jpg', 'berry5.jpg', 'berry6.jpg'),
+(3, 'regia1.jpg', 'regia2.jpg', 'regia3.jpg', 'regia4.jpg', 'regia5.jpg', 'regia6.jpg');
 
 -- --------------------------------------------------------
 
@@ -308,21 +335,27 @@ INSERT INTO `tr_request` (`id`, `name`, `project_name`, `project_id`, `project_m
 
 CREATE TABLE `t_admin` (
   `id` int(2) NOT NULL,
-  `username` varchar(15) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `password` varchar(75) NOT NULL,
-  `nama` varchar(15) NOT NULL,
+  `nama` varchar(25) NOT NULL,
   `nip` varchar(25) NOT NULL,
-  `level` enum('Super Admin','Admin') NOT NULL
+  `level` enum('Super Admin','Admin') NOT NULL,
+  `id_karyawan` int(11) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `id_role_access` int(11) NOT NULL,
+  `id_divisi` int(11) NOT NULL,
+  `id_dep` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_admin`
 --
 
-INSERT INTO `t_admin` (`id`, `username`, `password`, `nama`, `nip`, `level`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 'Super Admin'),
-(2, 'umum', 'adfab9c56b8b16d6c067f8d3cff8818e', 'Nur Akhwan', '19900326 201401 1 002', 'Admin'),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'Administrator 1', '199003262017011001', 'Admin');
+INSERT INTO `t_admin` (`id`, `username`, `password`, `nama`, `nip`, `level`, `id_karyawan`, `email`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '11941124', 'Super Admin', 11941124, 'admin@ilcs.co.id', 'Active', 1, 1, 1),
+(2, 'rola', '21232f297a57a5a743894a0e4a801fc3', 'Rola Setia', '11941124', 'Super Admin', 11941124, 'rola@ilcs.co.id', 'Active', 1, 1, 1),
+(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'Administrator 1', '199003262017011001', 'Admin', 0, '', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -454,6 +487,12 @@ ALTER TABLE `tr_request`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tr_upload_file`
+--
+ALTER TABLE `tr_upload_file`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_admin`
 --
 ALTER TABLE `t_admin`
@@ -515,13 +554,19 @@ ALTER TABLE `tb_divisi`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tr_request`
 --
 ALTER TABLE `tr_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tr_upload_file`
+--
+ALTER TABLE `tr_upload_file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_admin`
