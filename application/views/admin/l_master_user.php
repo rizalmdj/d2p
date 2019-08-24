@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-lg-12">
   	<div class="row">
-	<a href="<?php echo base_URL(); ?>index.php/master_data/add_departemen" class="btn btn-warning "><i class="icon-plus icon-white"> </i> Add New Master User</a>
+	<a href="<?php echo base_URL(); ?>index.php/m_data_user/add_master_user" class="btn btn-warning "><i class="icon-plus icon-white"> </i> Add New Master User</a>
 	<dir></dir>
 	<div class="navbar navbar-inverse">
 		<div class="container">
@@ -42,16 +42,15 @@
 		<tr align="center">
 
 			<th width="1%">NO</th>
-			<th width="3%">ID KARYAWAN</th>
-			<th width="8%">USERNAME</th>
-			<th width="8%">PASSWORD</th>
-			<th width="8%">REALNAME</th>
-			<th width="8%">EMAIL</th>
+			<th width="3%">USERNAME</th>
+			<th width="3%">NAMA</th>
+			<th width="5%">ID KARYAWAN</th>
+			<th width="5%">EMAIL</th>
 			<th width="8%">ROLE ACCESS</th>
-			<th width="8%">DIVISI</th>
-			<th width="8%">DEPARTMENT</th>
-			<th width="5%">STATUS</th>
-			<th width="5%">OPTION</th>
+			<th width="10%">DIVISI</th>
+			<th width="10%">DEPARTMENT</th>
+			<th width="3%">STATUS</th>
+			<th width="10%">OPTION</th>
 		</tr>
 	</thead>
 	
@@ -67,14 +66,13 @@
 		<tr align="center">
 
 			<td><?php echo $i++; ?></td>
+			<td><?php echo $b->username; ?></td>
+			<td><?php echo $b->nama; ?></td>
 			<td><?php echo $b->id_karyawan; ?></td>
-			<td><?php echo $b->user_name; ?></td>
-			<td><?php echo $b->password; ?></td>
-			<td><?php echo $b->realname; ?></td>
-			<td><?php echo $b->email; ?></td>
-			<td><?php echo $b->id_role_access; ?></td>
-			<td><?php echo $b->id_divisi; ?></td>
-			<td><?php echo $b->id_dep; ?></td>
+			<td><?php echo $b->email; ?></td>			
+			<td><?php echo $b->role_access; ?></td>
+			<td><?php echo $b->nama_divisi; ?></td>
+			<td><?php echo $b->nama_departemen; ?></td>
 			<td><?php echo $b->status; ?></td>
 			
 			<?php 
@@ -82,13 +80,12 @@
 			?>
 			<td class="ctr">
 				<div class="btn-group">
-					<!-- <a href="<?php echo base_URL(); ?>index.php/admin/klas_surat/edt/<?php echo $b->id; ?>" class="btn btn-success btn-sm"><i class="icon-edit icon-white"> </i> Edit</a> -->
-					<a href="<?php echo base_URL(); ?>index.php/master_data/edit_departemen/<?php echo $b->id_user; ?>" class="btn btn-info btn-sm"><i 
+					<a href="<?php echo base_URL(); ?>index.php/m_data_user/edit_master_user/<?php echo $b->id; ?>" class="btn btn-info btn-sm"><i 
 					class="icon-edit icon-white"> </i> Edit</a>
 				</div>					
 
 				<div class="btn-group">
-					<a href="<?php echo base_URL(); ?>index.php/master_data/hapus_departemen/<?php echo $b->id_user; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i
+					<a href="<?php echo base_URL(); ?>index.php/m_data_user/delete_master_user/<?php echo $b->id; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i
 					class="icon-trash icon-white"></i> Delete</a> 
 				</div>
 			</td>

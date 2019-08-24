@@ -1,7 +1,7 @@
 <div class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
-			<span class="navbar-brand" href="#">Add Master User</span>
+			<span class="navbar-brand" href="#">Edit Master User</span>
 		</div>
 	</div><!-- /.container -->
 </div><!-- /.navbar -->

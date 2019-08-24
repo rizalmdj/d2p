@@ -44,7 +44,7 @@ class Request_d2p extends CI_Controller {
 		 }else {
 				
 			$config['upload_path']          = './upload/';
-            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf';                
+            $config['allowed_types']        = 'gif|jpg|png|pdf|jpeg';                
 			$this->load->library('upload', $config);
 			$j = 0;
 				if($this->upload->do_upload('upload_file1')){
@@ -122,7 +122,7 @@ class Request_d2p extends CI_Controller {
 			}else {
 				
 			$config['upload_path']          = './upload/';
-            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf';
+            $config['allowed_types']        = 'gif|jpg|png|pdf|jpeg';
 			$this->load->library('upload', $config);
 			$j = 0;
 				if($this->upload->do_upload('upload_file1')){

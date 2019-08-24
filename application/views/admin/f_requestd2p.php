@@ -16,17 +16,17 @@
 	<div class="col-lg-6">
 		<table width="200%" class="table-form">
 
-			<tr><td width="35%">Name</td><td><b><input type="text" name="name" value="<?php echo $var['nama']; ?>" disabled style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Name <span style="color:red;">*</span></td><td><b><input type="text" name="name" value="<?php echo $var['nama']; ?>" disabled style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Project Name</td><td><b><textarea name="project_name" required style="width: 400px; height: 85px" class="form-control"></textarea></b></td></tr>			
+			<tr><td width="35%">Project Name <span style="color:red;">*</span></td><td><b><textarea name="project_name" required style="width: 400px; height: 85px" class="form-control"></textarea></b></td></tr>			
 
-			<tr><td width="35%">Project ID</td><td><b><input type="text" name="project_id" required style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Project ID <span style="color:red;">*</span></td><td><b><input type="text" name="project_id" required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Project Manager</td><td><b><input type="text" name="project_manager" required  style="width: 400px" class="form-control"></b></td></tr></tr>			
+			<tr><td width="35%">Project Manager <span style="color:red;">*</span></td><td><b><input type="text" name="project_manager" required  style="width: 400px" class="form-control"></b></td></tr></tr>			
 
-			<tr><td width="35%">Keterangan</td><td><b><input type="text" name="keterangan" style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Keterangan <span style="color:red;">*</span></td><td><b><textarea name="project_name" required style="width: 400px; height: 85px" class="form-control"></textarea></b></td></tr>		
 
-			<tr><td width="35%">Date</td><td><b><input type="date" name="req_date" placeholder="DD-MM-YYYY" required style="width: 400px" class="form-control"></b></td></tr>		
+			<tr><td width="35%">Date <span style="color:red;">*</span></td><td><b><input type="date" name="req_date" placeholder="DD-MM-YYYY" required style="width: 400px" class="form-control"></b></td></tr>		
 			
 		</table>
 
@@ -38,23 +38,23 @@
 		<table width="200%" class="table-form">		
 
 
-			<tr><td width="35%">(1) Dokumen SIT</b></td><td><input type="file" name="upload_file1"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Dokumen SIT  <span style="color:red;">*</span></b></td><td><input type="file" name="upload_file1"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">(2) Dokumen UAT</td><td><b><input type="file" name="upload_file2"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Dokumen UAT <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file2"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">(3) List Object</td><td><b><input type="file" name="upload_file3"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">List Object <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file3"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">(4) Deployment Guide</td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Deployment Guide <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">(5) Rollback Plan</td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Rollback Plan <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">(6) Release Notes</td><td><b><input type="file" name="upload_file6"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Release Notes <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file6"  style="width: 400px" class="form-control"></b></td></tr>
 
 		</table>
 
 		<table>
 
-			<tr><td width="200%"><b><i><text style="color: red;" >*File Upload Only GIF, JPEG, JPG, PNG, PDF</i></b></td></tr>
+			<tr><td width="200%"><b><i><text style="color: red;" >* File upload only gif, jpg, jpeg, png, pdf</i></b></td></tr>
 
 			<tr><td colspan="2">
 			
