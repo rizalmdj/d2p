@@ -37,9 +37,13 @@ class Admin extends CI_Controller {
                     'user' => $d_cek->username,
                     'nama' => $d_cek->nama,
                     'admin_ta' => $ta,
-                    'admin_level' => $d_cek->level,
+                    'admin_level' => $d_cek->id_role_access,
+                    'divisi' => $d_cek->id_divisi,
+                    'departemen' => $d_cek->id_dep,
 					'admin_valid' => true
                     );
+            // print_r(json_encode($data));die();
+
             $this->session->set_userdata($data);
             redirect('index.php/admin');
         } else {	

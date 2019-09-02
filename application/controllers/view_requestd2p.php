@@ -12,6 +12,8 @@ class View_requestd2p extends CI_Controller {
 	public function view_requestd2p_list (){
 		$data['page']		= "l_view_requestd2p";	
 		$data['view_request'] = $this->view_requestd2p_model->getAllViewRequest();
+		// print_r($data['view_request']);
+		// die();
 
 		if (!empty($this->input->post('q'))){
 			$data['view_request'] =  $this->view_requestd2p_model->searchViewRequest();
@@ -24,9 +26,16 @@ class View_requestd2p extends CI_Controller {
 
 // APPROVAL LIST REQUEST D2P
 
-	public function approval_request_d2p($id){
-		$this->view_requestd2p_model->approval_request_d2p($id,'tr_request');
-		redirect('index.php/view_requestd2p/view_requestd2p_list');
+	public function approval_request_d2p($id,$id_role){
+
+		// print_r($id.'-'.$id_role); die();
+		if($id_role = '3'){
+			$status = '4';
+		}elseif($id_role == '4'){
+			$status = '5';
+		}
+		$this->view_requestd2p_model->approval_request_d2p($id,$status);
+		redirect('index.php/view_requestd2p/view_requestd2p_list');	
 	}
 
 // REJECT LIST REQUEST D2P
