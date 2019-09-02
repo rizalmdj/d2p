@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2019 at 08:15 PM
+-- Generation Time: Sep 02, 2019 at 07:06 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -354,8 +354,7 @@ CREATE TABLE `t_admin` (
 
 INSERT INTO `t_admin` (`id`, `username`, `password`, `nama`, `nip`, `level`, `id_karyawan`, `email`, `status`, `id_role_access`, `id_divisi`, `id_dep`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '11941124', 'Super Admin', 11941124, 'admin@ilcs.co.id', 'Active', 1, 1, 1),
-(2, 'rola', '21232f297a57a5a743894a0e4a801fc3', 'Rola Setia', '11941124', 'Super Admin', 11941124, 'rola@ilcs.co.id', 'Active', 1, 1, 1),
-(3, 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 'Administrator 1', '199003262017011001', 'Admin', 0, '', '', 0, 0, 0);
+(2, 'rola', '21232f297a57a5a743894a0e4a801fc3', 'Rola Setia Putra', '11941124', 'Super Admin', 11941124, 'rola@ilcs.co.id', 'Active', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -572,7 +571,7 @@ ALTER TABLE `tr_upload_file`
 -- AUTO_INCREMENT for table `t_admin`
 --
 ALTER TABLE `t_admin`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `t_disposisi`
