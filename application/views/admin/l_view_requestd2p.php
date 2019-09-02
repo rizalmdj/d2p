@@ -52,7 +52,9 @@
 		<?php 
 		if (empty($view_request)) {
 			echo "<tr><td colspan='4'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
-		} else {
+		} 
+		else 
+		{
 			$no 	= ($this->uri->segment(4) + 1);
 			$i = 1;
 			// var_dump($view_request);
@@ -67,13 +69,12 @@
 			<td><?php echo $b->req_date; ?></td>
 			<td><?php echo $b->status_name; ?></td>
 			
-			<?php 
-			if ($this->session->userdata('admin_level') == "Super Admin") {
-			?>
+			<?php if ($this->session->userdata('admin_level')) {?>
+			
 
 			<td class="ctr">
 					<div class="btn-group">
-						<a href="<?php echo base_URL(); ?>index.php/view_requestd2p/approval_request_d2p/<?php echo $b->id; ?>" 
+						<a href="<?php echo base_URL(); ?>index.php/view_requestd2p/approval_request_d2p/<?php echo $b->id; ?>/<?php echo $this->session->userdata('admin_level'); ?>" 
 							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to approve?')"><i 
 						class="icon-ok icon-white"> </i> Approval</a>
 					</div>					
@@ -89,10 +90,11 @@
 
 			</td>
 			<?php 
-
-			} else {
-				echo "<td class='ctr'> -- </td>";
-			}
+				} 
+				else 
+					{
+						echo "<td class='ctr'> -- </td>";
+					}
 			?>
 		</tr>
 		<?php 

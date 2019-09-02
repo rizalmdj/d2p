@@ -69,7 +69,7 @@
 			<td><?php echo $b->status_name; ?></td>
 			
 			<?php 
-			if ($this->session->userdata('admin_level') == "Super Admin") {
+			if ($this->session->userdata('admin_level')) {
 			?>
 
 			<td class="ctr">
