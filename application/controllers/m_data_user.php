@@ -34,23 +34,25 @@ class M_data_user extends CI_Controller {
 
 	public function do_add_master_user (){
 
-		// $this->form_validation->set_rules('username','username', 'trim|required');
-		// $this->form_validation->set_rules('password','password', 'trim|required');
-		// $this->form_validation->set_rules('name','name', 'trim|required');
-		// $this->form_validation->set_rules('id_karyawan','id_karyawan', 'trim|required');
-		// $this->form_validation->set_rules('email','email', 'trim|required');
-		// $this->form_validation->set_rules('role_access','role_access', 'trim|required');
-		// $this->form_validation->set_rules('nama_divisi','nama_divisi', 'trim|required');
-		// $this->form_validation->set_rules('nama_departemen','nama_departemen', 'trim|required');
-		// $this->form_validation->set_rules('status','status', 'trim|required');
+			$this->form_validation->set_rules('username','username', 'trim|required');
+			$this->form_validation->set_rules('password','password', 'trim|required');
+			$this->form_validation->set_rules('name','name', 'trim|required');
+			$this->form_validation->set_rules('id_karyawan','id_karyawan', 'trim|required');
+			$this->form_validation->set_rules('email','email', 'trim|required');
+			$this->form_validation->set_rules('role_access','role_access', 'trim|required');
+			$this->form_validation->set_rules('nama_divisi','nama_divisi', 'trim|required');
+			$this->form_validation->set_rules('nama_departemen','nama_departemen', 'trim|required');
+			$this->form_validation->set_rules('status','status', 'trim|required');
 
-		// if ($this->form_validation->run() == FALSE) {
-		// 	redirect('index.php/m_data_user/add_master_user');
+			if ($this->form_validation->run() == FALSE) {
+				redirect('index.php/m_data_user/add_master_user');
 
-		//  }else {
-		 	$this->m_user_model->add_master_user_model();
-		 	redirect('index.php/m_data_user/master_user');
-		 // }
+			 	}
+			 else
+			 	{
+				$this->m_user_model->add_master_user_model();
+				redirect('index.php/m_data_user/master_user');
+			 	}
 	}
 
 // 	GET DEPARTEMENT

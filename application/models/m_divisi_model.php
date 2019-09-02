@@ -33,6 +33,23 @@ class M_divisi_model extends CI_Model {
         }
     }
     
+    public function getidDivisi($id_divisi){
+        $this->db->select('*');
+        $this->db->from('tb_divisi');
+        $this->db->where('id_divisi', $id_divisi);
+        // $this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
+        // $this->db->order_by('tb_divisi.id_divisi');
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->row_array();
+        } else {
+            return array();
+        }
+    }
+
+    
+    
         
 
 //  ADD MASTER DIVISI MODEL
