@@ -7,7 +7,7 @@ class M_data_user extends CI_Controller {
 	}
 
 
-// 	VIEW MASTER USER
+// 	VIEW MASTER USER 
 
 	public function master_user (){
 		$data['page']		= "l_master_user";	
@@ -18,7 +18,7 @@ class M_data_user extends CI_Controller {
 			$data['datauser'] = $this->m_user_model->searchMasterDataUser();
 		}
 
-		$this->load->view('admin/aaa', $data);
+		$this->load->view('admin/aaa', $data); 
 	}
 
 
@@ -43,16 +43,19 @@ class M_data_user extends CI_Controller {
 			$this->form_validation->set_rules('nama_divisi','nama_divisi', 'trim|required');
 			$this->form_validation->set_rules('nama_departemen','nama_departemen', 'trim|required');
 			$this->form_validation->set_rules('status','status', 'trim|required');
+			
+			$eksekusi = $this->m_user_model->add_master_user_model();
 
-			if ($this->form_validation->run() == FALSE) {
-				redirect('index.php/m_data_user/add_master_user');
+			if($eksekusi==true){
+				$data['page']		= "l_master_user";	
+				$data['datauser'] = $this->m_user_model->getAlluser();
 
-			 	}
-			 else
-			 	{
-				$this->m_user_model->add_master_user_model();
-				redirect('index.php/m_data_user/master_user');
-			 	}
+				if (!empty($this ->input->post('q'))){
+
+					$data['datauser'] = $this->m_user_model->searchMasterDataUser();
+				}				
+				$this->load->view('admin/aaa', $data);
+			}
 	}
 
 // 	GET DEPARTEMENT
@@ -83,34 +86,6 @@ class M_data_user extends CI_Controller {
 		$data['divisi'] 	= $this->web_model->getAll('tb_divisi');
 		$this->load->view('admin/aaa', $data);
 	}
-
-// 	public function do_edit_master_user (){
-
-// 		$this->form_validation->set_rules('nama_departemen','nama_departemen', 'trim|required');
-
-
-// 		$id_dep = $this->input->post('id_dep');
-
-// 		if ($this->form_validation->run() == FALSE) {
-// 			redirect('index.php/master_data/edit_departemen');
-
-// 		 }else {
-
-// 		 	$data = $this->input->post();
-// 		 	$this->departemen_model->updateDepartemen($id_dep, $data);
-
-// 		 	redirect('index.php/master_data/master_data_departemen');
-// 		 }
-// 	}
-
-// //	DELETE MASTER USER
-
-// 	public function delete_master_user($id_dep){
-// 		$this->departemen_model->delete_departemen($id_dep,'tb_departemen');
-// 		redirect('index.php/master_data/master_data_departemen');
-// 	}
-
-
 
 
 }

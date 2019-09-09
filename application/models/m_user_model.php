@@ -26,51 +26,32 @@ class M_user_model extends CI_Model {
     public function add_master_user_model(){
         $this->load->model(array('role_access_model','m_divisi_model','departemen_model'));
         $role_access = $this->input->post('role_access',true);
+        if($role_access == 1){
+            $level = "Super Admin";
+        } elseif($role_access == 2){
+            $level = "Requester";
+        } elseif($role_access == 3){
+            $level = "Approval1";
+        } elseif($role_access == 4){
+            $level = "Approval2";
+        }
         $nama_divisi = $this->input->post('nama_divisi',true);
         $nama_departemen = $this->input->post('nama_divisi',true);
         $data = array(
             "username" => $this->input->post('username',true),
-            "password" => $this->input->post(md5('password',true)),
+            "password" => md5($this->input->post('password',true)),
             "nama" => $this->input->post('nama',true),
             "id_karyawan" => $this->input->post('id_karyawan',true),
+            "level" => $level,
             "email" => $this->input->post('email',true),
             "status" => $this->input->post('status',true),
+            "id_role_access" => $this->input->post('role_access',true),
+            "id_divisi" => $this->input->post('nama_divisi',true),
+            "id_dep" => $this->input->post('nama_divisi',true)
         );
 
-        $data1 = array(
-            "id_role_access" => $this->role_access_model->getRoleaccess($role_access)
-        );
-        
-        $data2 = array(
-            "id_divisi" => $this->m_divisi_model->getidDivisi($nama_divisi)
-        );
-
-        $data3 = array(
-            "id_dep" => $this->departemen_model->getDepartement($nama_departemen)
-        );
-
-        // var_dump($data);
-        // var_dump($data1);
-        // var_dump($data2);
-        // var_dump($data3);
-        // die;
-
-        $this->db->trans_start();
-        $this->db->insert('t_admin', $data);
-        $this->db->insert('t_admin', $data1);
-        $this->db->insert('t_admin', $data2);
-        $this->db->insert('t_admin  ', $data3);
-        $this->db->trans_complete();
-
-         if ($this->db->trans_status() === FALSE)
-            {
-                $this->db->trans_rollback();
-            }
-        else
-            {
-                $this->db->trans_commit();
-            } 
-
+        $this->db->insert('t_admin', $data);               
+        return true;
     }
 
     public function findDept($division){
@@ -78,7 +59,7 @@ class M_user_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_departemen');
         $this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
-        $this->db->where('tb_divisi.nama_divisi',$division);
+        $this->db->where('tb_divisi.id_divisi',$division);
         $this->db->order_by('tb_divisi.id_divisi');
 
         $query = $this->db->get();
