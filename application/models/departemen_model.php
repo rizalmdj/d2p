@@ -6,8 +6,8 @@ class Departemen_model extends CI_Model {
 	public function getAllDepDivisi(){
     	$this->db->select('*');
     	$this->db->from('tb_departemen');
-    	$this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
-    	$this->db->order_by('tb_divisi.id_divisi');
+    	//$this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
+    	//$this->db->order_by('tb_divisi.id_divisi');
 
     	$query = $this->db->get();
     	if ($query->num_rows() > 0){

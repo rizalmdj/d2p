@@ -44,7 +44,7 @@
 
 					foreach($role_access  as $row)
 					{
-						echo '<option value="'.$row->role_access.'">'.$row->role_access.' </option>';
+						echo '<option value="'.$row->id_role_access.'">'.$row->role_access.' </option>';
 					}
 					?>
 					</select></b>
@@ -59,7 +59,7 @@
 
 					foreach($divisi  as $row)
 					{
-						echo '<option value="'.$row->nama_divisi.'">'.$row->nama_divisi.' </option>';
+						echo '<option value="'.$row->id_divisi.'">'.$row->nama_divisi.' </option>';
 					}
 					?>
 					</select></b>
@@ -78,8 +78,8 @@
 			<tr><td width="20%">Status</td><td><b>
 				<select class="form-control" name="status" required style="width: 400px">	
 					<option value="">Pilihan</option>
-					<option value="active">Active</option>
-					<option value="deactive">Deactive</option>
+					<option value="Active">Active</option>
+					<option value="Deactive">Deactive</option>
 				</select>
 			</b></td></tr>
 
@@ -111,7 +111,7 @@
 							$.each(response.data,function(key,value){
 									$('#dept')
 							         .append($("<option></option>")
-							         .attr("value",value.nama_departemen)
+							         .attr("value",value.id_dep)
 							         .text(value.nama_departemen)); 						
 							});
 							
