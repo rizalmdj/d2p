@@ -6,8 +6,8 @@ class Departemen_model extends CI_Model {
 	public function getAllDepDivisi(){
     	$this->db->select('*');
     	$this->db->from('tb_departemen');
-    	$this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
-    	$this->db->order_by('tb_divisi.id_divisi');
+    	//$this->db->join('tb_divisi', 'tb_departemen.id_divisi = tb_divisi.id_divisi');
+    	//$this->db->order_by('tb_divisi.id_divisi');
 
     	$query = $this->db->get();
     	if ($query->num_rows() > 0){
@@ -23,6 +23,7 @@ class Departemen_model extends CI_Model {
 		$this->db->where('nama_divisi', $nama_divisi);
 
 		$query = $this->db->get();
+
     	if ($query->num_rows() > 0){
     		return $query->result()[0]->id_divisi;
     	} else {
@@ -46,6 +47,23 @@ class Departemen_model extends CI_Model {
     	
     }
 
+    public function getDepartement($nama_departemen){
+        $nama_departemen = $this->input->post('nama_departemen',true);
+        $this->db->select('*');
+        $this->db->from('tb_departemen');
+        $this->db->where('nama_departemen', $nama_departemen);
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->row_array();
+        } else {
+            return array();
+        }
+        
+    }
+
+
+
 
 //  ADD DEPARTEMENT
 
@@ -66,6 +84,8 @@ class Departemen_model extends CI_Model {
 		$this->db->update('tb_departemen');
 
 	}
+
+        
 
 //  DELETE DEPARTEMENT
 

@@ -16,7 +16,7 @@
 
 			<tr>
 				<td width="20%">Nama divisi</td>
-				<td><b><select class="form-control" name="nama_divisi" required style="width: 400px">
+				<td><b><select class="form-control" name="nama_divisi" required style="width: 400px"><option value="">Pilihan</option>
 					<?php
 
 					foreach($divisi  as $row)

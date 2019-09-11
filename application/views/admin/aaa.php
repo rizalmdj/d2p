@@ -86,10 +86,9 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">	
           	<?php
-			if ($this->session->userdata('admin_level') == "Super Admin") {
 			?>
           	<?php 
-          		$menu = $this->db->query("SELECT * FROM  menu where id_parent =0");
+          		$menu = $this->db->query("SELECT * FROM  menu where id_parent =0 and id_role like '%".$this->session->userdata('admin_level')."%' ");
           		foreach ($menu->result_array() as $row) {
           			
           			if ($row['dropdown'] == 'Y') {
@@ -99,7 +98,7 @@
 		          				</i> '.$row['nama_menu'].' <span class="caret"></span></a>
 		          				<ul class ="dropdown-menu" aria-labelledby="themes">';
 
-		          				$a = $this->db->query("SELECT * FROM  menu where id_parent =".$row['id']."");
+		          				$a = $this->db->query("SELECT * FROM  menu where id_parent =".$row['id']." and id_role like '%".$this->session->userdata('admin_level')."%' ");
 
 		          				foreach ($a->result_array() as $r) {
 		          					echo '<li><a tabindex="-1" href="'.base_url($r['url']).'"> '.$r['nama_menu'].'</a></li>';
@@ -123,20 +122,15 @@
               </ul>
             </li>
 
-            	<?php } else if ($this->session->userdata('admin_level') == "Requester") { ?>
-				<li>
-				<a href="<?php echo base_url(); ?>index.php/request_d2p/request_d2p_list" id="themes"><i class="icon-book icon-white"> </i> Request D2P </a>			
-            	</li>			
-			<?php } else if ($this->session->userdata('admin_level') == "Approval1" or $this->session->userdata('admin_level') == "Approval2" or $this->session->userdata('admin_level') == "Approval3") { ?>
-				<li>
-				<a href="<?php echo base_url(); ?>index.php/view_requestd2p/view_requestd2p_list" id="themes"><i class="icon-tag icon-white"> </i> View Request </a>				
-            	</li>
-			<?php } ?>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-user icon-white"></i> Administrator <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-user icon-white"></i> 
+              	<?php 
+              	echo $this->session->userdata('nama');
+               	?> 
+               <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/admin/passwod">Change Password</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>index.php/admin/logout">Sign Out</a></li>               
