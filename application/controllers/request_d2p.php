@@ -5,6 +5,8 @@ class Request_d2p extends CI_Controller {
 		parent::__construct();
 		$this->load->model(array('web_model','requestd2p_model','view_requestd2p_model'));
 		$this->load->library('session');
+	} 
+
 
 
 // VIEW LIST REQUEST D2P
