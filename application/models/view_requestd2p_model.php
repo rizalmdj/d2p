@@ -71,5 +71,40 @@ class View_requestd2p_model extends CI_Model {
         return $this->db->get()->result();
         // var_dump($this->db->like('name', $q));die;
     } 
+
+
+// view request d2p user
+
+    public function getAllViewRequestUser(){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status','tr_request.status_req = m_status.id_status');
+        $this->db->join('tr_upload_file','tr_request.id = tr_upload_file.id');
+        $this->db->where('tr_upload_file.id');
+                
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+
+
+
+    public function getViewRequestUserById($id){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status','tr_request.status_req = m_status.id_status');
+        $this->db->join('tr_upload_file','tr_request.id = tr_upload_file.id');
+        $this->db->where('tr_upload_file.id', $id);
+        
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
     
 }

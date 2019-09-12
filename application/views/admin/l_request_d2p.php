@@ -45,7 +45,7 @@
 			<th width="10%">PROJECT ID</th>
 			<th width="10%">DATE</th>
 			<th width="8%">STATUS</th>
-			<th width="15%">OPTION</th>
+			<th width="13%">OPTION</th>
 		</tr>
 	</thead>
 	
@@ -77,6 +77,20 @@
 						if($b->status_req == 1){
 						?>						
 					<div class="btn-group">
+						<a href="<?php echo base_URL(); ?>index.php/request_d2p/view_request_d2p_user/<?php echo $b->id; ?>" 
+							class="btn btn-warning btn-sm"><i
+						class="icon-eye-open icon-white"></i> View</a>	 
+					</div>
+
+					<div class="btn-group">
+						<a href="<?php echo base_URL(); ?>index.php/request_d2p/submit_request_d2p/<?php echo $b->id; ?>" 
+							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to submit?')"><i
+						class="icon-ok icon-white"></i> Submit</a>	 
+					</div>
+
+					<dir></dir>
+
+					<div class="btn-group">
 						<a href="<?php echo base_URL(); ?>index.php/request_d2p/edit_request_d2p/<?php echo $b->id; ?>" 
 							class="btn btn-info  btn-sm"><i 
 						class="icon-edit icon-white"> </i> Edit</a>
@@ -93,8 +107,9 @@
 						class="icon-ok icon-white"></i> Submit</a>	 
 					</div>
 					<?php 
-						} else{
 							?>
+						} else{
+					<?php } ?>
 					<div class="btn-group">
 						<a href="#"  class="btn btn-success  btn-sm">Submitted</a>
 					</div>
@@ -113,7 +128,6 @@
 							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to reject?')"><i
 						class="icon-ok icon-white"></i> Reject</a>	 
 					</div>
-					<?php } ?>
 				</div>					
 
 
