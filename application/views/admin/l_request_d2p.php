@@ -45,7 +45,7 @@
 			<th width="10%">PROJECT ID</th>
 			<th width="10%">DATE</th>
 			<th width="8%">STATUS</th>
-			<th width="15%">OPTION</th>
+			<th width="13%">OPTION</th>
 		</tr>
 	</thead>
 	

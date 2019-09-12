@@ -3,9 +3,10 @@
 class Request_d2p extends CI_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(array('web_model','requestd2p_model'));
+		$this->load->model(array('web_model','requestd2p_model','view_requestd2p_model'));
 		$this->load->library('session');
 	} 
+
 
 
 // VIEW LIST REQUEST D2P
@@ -108,6 +109,7 @@ class Request_d2p extends CI_Controller {
 		$this->load->view('admin/aaa', $data);
 	}
 
+
 	public function do_edit_requestd2p () {
 
 		$this->form_validation->set_rules('name','name','trim|required');
@@ -191,5 +193,15 @@ class Request_d2p extends CI_Controller {
 	}
 
 
+//View Request
+
+	public function view_request_d2p_user (){
+		$id					= $this->uri->segment(3);
+		$data['data'] = $this->view_requestd2p_model->getViewRequestUserById($id);
+		$data['page']		= "f_requestd2p_view";
+		// print_r($data['data']);exit;	
+		$data['request'] = $this->view_requestd2p_model->getAllViewRequestUser();
+		$this->load->view('admin/aaa', $data);
+	}
 
 }
