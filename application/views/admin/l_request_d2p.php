@@ -62,7 +62,7 @@
 
 			<td><?php echo $i++; ?></td>
 			<td><?php echo $b->name; ?></td>
-			<td><?php echo $b->project_name; ?></td>
+			<td><a href="<?php echo base_URL(); ?>index.php/request_d2p/edit_request_d2p/<?php echo $b->id; ?>"><?php echo $b->project_name; ?></a></td>
 			<td><?php echo $b->project_id; ?></td>
 			<td><?php echo $b->req_date; ?></td>
 			<td><?php echo $b->status_name; ?></td>
@@ -75,29 +75,7 @@
 			<?php
 					if ($this->session->userdata('admin_level') == 2){ 
 						if($b->status_req == 1){
-						?>						
-
-					<div class="btn-group">
-						<a href="<?php echo base_URL(); ?>index.php/request_d2p/view_request_d2p_user/<?php echo $b->id; ?>" 
-							class="btn btn-warning btn-sm"><i
-						class="icon-eye-open icon-white"></i> View</a>	 
-					</div>
-
-					<div class="btn-group">
-						<a href="<?php echo base_URL(); ?>index.php/request_d2p/submit_request_d2p/<?php echo $b->id; ?>" 
-							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to submit?')"><i
-						class="icon-ok icon-white"></i> Submit</a>	 
-					</div>
-
-					<dir></dir>
-
-
-					<div class="btn-group">
-						<a href="<?php echo base_URL(); ?>index.php/request_d2p/edit_request_d2p/<?php echo $b->id; ?>" 
-							class="btn btn-info  btn-sm"><i 
-						class="icon-edit icon-white"> </i> Edit</a>
-					</div>					
-					
+						?>																													
 					<div class="btn-group">
 						<a href="<?php echo base_URL(); ?>index.php/request_d2p/delete_request_d2p/<?php echo $b->id; ?>" 
 							class="btn btn-danger btn-sm" onclick="return confirm('Are you sure want to delete?')"><i
@@ -108,18 +86,22 @@
 							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to submit?')"><i
 						class="icon-ok icon-white"></i> Submit</a>	 
 					</div>
-					<?php 
-							?>
-						} else{
-					<?php } ?>
-					<div class="btn-group">
+					<?php } else{ ?>
+						<div class="btn-group">
 						<a href="#"  class="btn btn-success  btn-sm">Submitted</a>
 					</div>
+					<?php } ?>
+					
 					<?php	}
 				} ?>											
 					<?php
 					if ($this->session->userdata('admin_level') == 3 or $this->session->userdata('admin_level') == 4 or $this->session->userdata('admin_level') == 1){ 
 						?>
+					<div class="btn-group">
+						<a href="<?php echo base_URL(); ?>index.php/request_d2p/view_request_d2p_user/<?php echo $b->id; ?>" 
+							class="btn btn-warning btn-sm"><i
+						class="icon-eye-open icon-white"></i> View</a>	 
+					</div>
 					<div class="btn-group">
 						<a href="<?php echo base_URL(); ?>index.php/request_d2p/approve_request_d2p/<?php echo $b->id; ?>" 
 							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to approve?')"><i
@@ -137,12 +119,7 @@
 
 
 			</td>
-			<?php 
-
-			} else {
-				echo "<td class='ctr'> -- </td>";
-			}
-			?>
+		
 		</tr>
 		<?php 
 			$no++;
