@@ -22,7 +22,7 @@ class View_requestd2p_model extends CI_Model {
             }
         
         
-        $query = $this->db->query("select * from tr_request join m_status on tr_request.status_req = m_status.id_status where tr_request.status_req ='".$status."'");
+        $query = $this->db->query("select * from tr_request join m_status on tr_request.status_req = m_status.id_status where tr_request.status_req <> 1");
     	
     	$row = $query->result();
         // print_r($row);
