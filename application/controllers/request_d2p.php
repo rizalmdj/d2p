@@ -5,6 +5,7 @@ class Request_d2p extends CI_Controller {
 		parent::__construct();
 		$this->load->model(array('web_model','requestd2p_model','view_requestd2p_model'));
 		$this->load->library('session');
+		$this->load->helper('url');
 	} 
 
 
@@ -109,6 +110,14 @@ class Request_d2p extends CI_Controller {
 		$this->load->view('admin/aaa', $data);
 	}
 
+	public function detail_request_d2p (){
+		$id					= $this->uri->segment(3);
+		$data['data'] = $this->requestd2p_model->getDetailRequestById($id);
+		$data['page']		= "f_requestd2p_view";
+		//echo "<pre>"; print_r($data['data']); echo "</pre>";exit;	
+		$data['request'] = $this->requestd2p_model->getAllEditRequest();
+		$this->load->view('admin/aaa', $data);
+	}
 
 	public function do_edit_requestd2p () {
 

@@ -51,10 +51,43 @@ class Requestd2p_model extends CI_Model {
         }
     }
 
+//Get data Detail
+    public function getDetailRequestById($id){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status','tr_request.status_req = m_status.id_status');
+        $this->db->join('tr_upload_file','tr_request.id_upload_file = tr_upload_file.id','left');
+        $this->db->where('tr_request.id', $id);
+        
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }  
+
 // ADD REQUEST D2P MODEL    
 
     public function add_request($filename1,$filename2,$filename3,$filename4,$filename5,$filename6) {
         $var = $this->session->userdata;		
+
+        $maxid = 0;
+        $row = $this->db->query('SELECT MAX(id) AS `maxid` FROM `tr_upload_file`')->row();
+        if ($row) {
+            $maxid = $row->maxid; 
+        }        
+
+        $datauploadfile = array ( 
+            "id" => $maxid+1,
+            "upload_file1" => $filename1,
+            "upload_file2" => $filename2,
+            "upload_file3" => $filename3,
+            "upload_file4" => $filename4,
+            "upload_file5" => $filename5,
+            "upload_file6" => $filename6,
+        );
+
         $data = array(
             "name" => $var['nama'],
             "project_name" => $this->input->post('project_name',true),
@@ -65,21 +98,14 @@ class Requestd2p_model extends CI_Model {
             "created_date" => date('Y-m-d H:i:s'),
             "status_req" => '1',
             "update_date" => date('Y-m-d H:i:s'),
-            "created_by" => $var['id']
-        );
-
-        $datauploadfile = array ( 
-            "upload_file1" => $filename1,
-            "upload_file2" => $filename2,
-            "upload_file3" => $filename3,
-            "upload_file4" => $filename4,
-            "upload_file5" => $filename5,
-            "upload_file6" => $filename6,
+            "created_by" => $var['id'],
+            "id_upload_file" => $maxid+1
         );
 
         $this->db->trans_start();
-        $this->db->insert('tr_request', $data);
+        //nanti ditambahi kondisi disini agar uploadfile jalan dulu dan sukses baru tr_request diproses -yoga
         $this->db->insert('tr_upload_file', $datauploadfile);
+        $this->db->insert('tr_request', $data);        
         $this->db->trans_complete();
 
         if ($this->db->trans_status() === FALSE)

@@ -62,7 +62,7 @@
 
 			<td><?php echo $i++; ?></td>
 			<td><?php echo $b->name; ?></td>
-			<td><a href="<?php echo base_URL(); ?>index.php/request_d2p/edit_request_d2p/<?php echo $b->id; ?>"><?php echo $b->project_name; ?></a></td>
+			<td><a href="<?php echo base_URL(); ?>index.php/request_d2p/detail_request_d2p/<?php echo $b->id; ?>"><?php echo $b->project_name; ?></a></td>
 			<td><?php echo $b->project_id; ?></td>
 			<td><?php echo $b->req_date; ?></td>
 			<td><?php echo $b->status_name; ?></td>
