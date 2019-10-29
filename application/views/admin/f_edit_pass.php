@@ -37,7 +37,7 @@
     <script src="<?php echo base_url(); ?>aset/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>aset/bootswatch.js"></script>
 	<script src="<?php echo base_url(); ?>aset/js/jquery/jquery-ui.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {
@@ -86,39 +86,7 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">	
-          	<?php
-			?>
-          	<?php 
-          		$menu = $this->db->query("SELECT * FROM  menu where id_parent =0 and id_role like '%".$this->session->userdata('admin_level')."%' ");
-          		foreach ($menu->result_array() as $row) {
-          			
-          			if ($row['dropdown'] == 'Y') {
-
-          			echo'	<li class="dropdown">
-		          			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="'.$row['icon'].'">
-		          				</i> '.$row['nama_menu'].' <span class="caret"></span></a>
-		          				<ul class ="dropdown-menu" aria-labelledby="themes">';
-
-		          				$a = $this->db->query("SELECT * FROM  menu where id_parent =".$row['id']." and id_role like '%".$this->session->userdata('admin_level')."%' ");
-
-		          				foreach ($a->result_array() as $r) {
-		          					echo '<li><a tabindex="-1" href="'.base_url($r['url']).'"> '.$r['nama_menu'].'</a></li>';
-
-		          				}
-
-          			echo '</ul>
-          				</li>';
-
-          				}
-
-          				else {
-
-          					echo '<li><a href="'.base_url($row['url']).'"><i class="'.$row['icon'].'"> </i> '.$row['nama_menu'].' 
-         					</a></li>';
-          				
-          				}
-          			}
-	         	?>
+       
               
               </ul>
             </li>
@@ -160,7 +128,52 @@
         </div>
       </div>
 
-		<?php $this->load->view('admin/'.$page); ?>
+		
+<div class="navbar navbar-inverse">
+	<div class="container">
+		<div class="navbar-header">
+			<span class="navbar-brand" href="#">Update New Password</span>
+		</div>
+	</div><!-- /.container -->
+</div><!-- /.navbar -->
+	<?php 
+	echo $this->session->flashdata("k");
+	$var = $this->session->userdata;
+	?>
+	<form action="<?php echo base_URL(); ?>index.php/m_data_user/new_pass" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+		
+	<div class="row-fluid well" style="overflow: hidden">
+	
+		<div class="col-lg-6">
+			<table width="400%" class="table-form">
+
+				<tr><td width="35%">New Passowrd</td><td><b><input type="password" name="password" style="width: 400px" class="form-control"></b></td></tr>
+
+				<tr><td width="35%">Confirm Password</td><td><b><input type="password" name="confirm_password" required style="width: 400px" class="form-control"></b></td></tr>		
+				
+				<tr><td width="35%"><span id='message'></span></td><td>
+
+				<br><button type="submit" class="btn btn-success"><i class="icon icon-ok icon-white"></i> Save</button>
+				
+			</table>
+
+		</div>
+	
+		
+	</div>
+
+	</form>
+
+		<script type="text/javascript">
+			$('#password, #confirm_password').on('keyup', function () {
+			  if ($('#password').val() == $('#confirm_password').val()) {
+			    $('#message').html('Matching').css('color', 'green');
+			  } else 
+			    $('#message').html('Not Matching').css('color', 'red');
+			});
+		</script>
+
+
 	  
 
 	  <div class="span12 well well-sm">		

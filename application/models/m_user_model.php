@@ -95,6 +95,16 @@ class M_user_model extends CI_Model {
         // var_dump($this->db->like('name', $a));die;
 
     }
+//  NEW PASS
+    public function new_pass($id,$status_pas){
+        $data = array(
+            "status_pas" => $status_pas,
+            "password"   => md5($this->input->post('confirm_password',true))
+        );
+        $this->db->where('username', $id);
+        $this->db->update('t_admin', $data);
+
+    }
 
 
 }

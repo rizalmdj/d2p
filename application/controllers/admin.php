@@ -10,10 +10,15 @@ class Admin extends CI_Controller {
 		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
 			redirect("index.php/admin/login");
 		}
+
+		 if ($this->session->userdata('status_pas') == '0'){
+		 	$page['page']	= "f_edit_pas";
+            $this->load->view('admin/f_edit_pass');
+		 }else{
+		 	$a['page']	= "d_amain";
 		
-		$a['page']	= "d_amain";
-		
-		$this->load->view('admin/aaa', $a);
+			$this->load->view('admin/aaa', $a);
+		}
 	}									
 	
 	//login
@@ -36,16 +41,24 @@ class Admin extends CI_Controller {
                     'id' => $d_cek->id,
                     'user' => $d_cek->username,
                     'nama' => $d_cek->nama,
+                    'nip'  => $d_cek->nip,
                     'admin_ta' => $ta,
                     'admin_level' => $d_cek->id_role_access,
                     'divisi' => $d_cek->id_divisi,
                     'departemen' => $d_cek->id_dep,
-					'admin_valid' => true
+					'admin_valid' => true,
+					'status_pas' => $d_cek->status_pas
                     );
-            // print_r(json_encode($data));die();
+            //print_r(json_encode($data));
+            //echo $d_cek->status_pas;
 
-            $this->session->set_userdata($data);
-            redirect('index.php/admin');
+           
+            	$this->session->set_userdata($data);
+            	redirect('index.php/admin');
+            
+           
+
+
         } else {	
 			$this->session->set_flashdata("k", "<div id=\"alert\" class=\"alert alert-error\">username or password is not valid</div>");
 			redirect('index.php/admin/login');

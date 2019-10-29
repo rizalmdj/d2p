@@ -7,7 +7,7 @@
 </div><!-- /.navbar -->
 	<?php 
 	echo $this->session->flashdata("k");
-	$var = $this->session->userdata;
+	$var = $this->session->userdata; //
 	?>
 	<form action="<?php echo base_URL(); ?>index.php/request_d2p/do_edit_requestd2p" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		
@@ -44,25 +44,17 @@
 			<input type="hidden" name ="id" 
 
 				value="<?php echo $data[0]->id ?>">				
-					<tr><td width="35%">Dokumen SIT  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file1 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file1."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>			
-					<tr><td width="35%">Dokumen UAT  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file2 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file2."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
-					<tr><td width="35%">List Object  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file3 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file3."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
-					<tr><td width="35%">Deployment Guide  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file4 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file4."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
-					<tr><td width="35%">Rollback Plan  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file5 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file5."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
-					<tr><td width="35%">Release Notes  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file6 != ""){echo "<a href='".base_url()."upload/".$data[0]->upload_file6."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
+					<tr><td width="35%">Dokumen SIT  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file1 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file1."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>			
+					<tr><td width="35%">Dokumen UAT  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file2 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file2."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
+					<tr><td width="35%">List Object  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file3 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file3."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
+					<tr><td width="35%">Deployment Guide  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file4 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file4."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
+					<tr><td width="35%">Rollback Plan  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file5 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file5."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
+					<tr><td width="35%">Release Notes  <span style="color:red;"></span></td><td><b><?php if($data[0]->upload_file6 != ""){echo "<a target='_blank' href='".base_url()."upload/".$data[0]->upload_file6."'>Download</a>";} else {echo "Data Tidak ada.";}?></b></td></tr></tr>	
 
-		</table>
-
-		<table>
-
-			<a href="<?php echo base_URL(); ?>index.php/request_d2p/request_d2p_list" class="btn btn-danger"><i class="icon icon-arrow-left icon-white"></i> Back</a></td>
-		</table>
+		</table>		
 
 	</div>	
 	</div>
-
-
-
 	</form>
 
-
+						

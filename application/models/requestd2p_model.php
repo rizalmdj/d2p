@@ -17,6 +17,23 @@ class Requestd2p_model extends CI_Model {
     	}
     }
 
+// GET  USER REQUEST D2P MODEL-------------------------------------------
+
+    public function getUserRequest($id){
+        $this->db->select('*');
+        $this->db->from('tr_request');
+        $this->db->join('m_status', 'tr_request.status_req = m_status.id_status');
+        $this->db->order_by("created_date", "desc");
+        $this->db->where('name', $id);
+        
+        $query = $this->db->get();
+        if ($query->num_rows() > 0){
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+
 //  GET ALL EDIT REQUEST D2P MODEL
 
     public function getAllEditRequest(){
@@ -40,8 +57,8 @@ class Requestd2p_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('tr_request');
         $this->db->join('m_status','tr_request.status_req = m_status.id_status');
-        $this->db->join('tr_upload_file','tr_request.id = tr_upload_file.id');
-        $this->db->where('tr_upload_file.id', $id);
+        $this->db->join('tr_upload_file','tr_request.id_upload_file = tr_upload_file.id','left');
+        $this->db->where('tr_request.id', $id);
         
         $query = $this->db->get();
         if ($query->num_rows() > 0){
@@ -70,7 +87,8 @@ class Requestd2p_model extends CI_Model {
 // ADD REQUEST D2P MODEL    
 
     public function add_request($filename1,$filename2,$filename3,$filename4,$filename5,$filename6) {
-        $var = $this->session->userdata;		
+        $var = $this->session->userdata;
+
 
         $maxid = 0;
         $row = $this->db->query('SELECT MAX(id) AS `maxid` FROM `tr_upload_file`')->row();
@@ -122,7 +140,9 @@ class Requestd2p_model extends CI_Model {
 // EDIT REQUEST D2P MODEL
 
     public function edit_request() {
-        $var = $this->session->userdata;        
+        $var = $this->session->userdata;
+        $id_d2p = $this->input->post('id_d2p', true);
+
         $data = array(
             "name" => $var['nama'],
             "project_name" => $this->input->post('project_name',true),
@@ -130,10 +150,27 @@ class Requestd2p_model extends CI_Model {
             "project_manager" => $this->input->post('project_manager',true),
             "keterangan" => $this->input->post('keterangan',true),
             "req_date" => $this->input->post('req_date',true),
-            "update_date" => date('Y-m-d H:i:s'),
+            //di hapus karena kita bisa gunakan fitue timestamp dari sql nya langsung hehehe :)
+            //"update_date" => date('Y-m-d H:i:s'),
         );
+        //$id = "16";
+        $this->db->trans_start();
+        $this->db->where('id', $id_d2p);
+        $this->db->update('tr_request', $data);
+        $this->db->trans_complete();
 
-         $datauploadfile1 = array ( 
+        if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+            }
+        else
+            {
+                $this->db->trans_commit();
+            }   
+
+    }
+    public function edit_request_data ($filename1,$filename2,$filename3,$filename4,$filename5,$filename6){
+        $datauploadfile1 = array ( 
             "upload_file1" => $filename1,
             "upload_file2" => $filename2,
             "upload_file3" => $filename3,
@@ -142,9 +179,8 @@ class Requestd2p_model extends CI_Model {
             "upload_file6" => $filename6,
         );
 
-        $this->db->trans_start();
-        $this->db->where('id', $this->input->post('id',true));
-        $this->db->update('tr_request', $data);
+        
+        $this->db->where('id',$this->input->post('id',true));
         $this->db->update('tr_upload_file', $datauploadfile1);
         $this->db->trans_complete();
 
@@ -157,7 +193,6 @@ class Requestd2p_model extends CI_Model {
             {
                 $this->db->trans_commit();
             }   
-
     }
 
 

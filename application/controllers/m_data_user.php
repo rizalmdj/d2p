@@ -3,6 +3,9 @@
 class M_data_user extends CI_Controller {
 	function __construct() {
 		parent::__construct();
+		if($this->session->userdata('admin_valid') != true){
+			redirect(base_url("index.php/admin/login"));
+		}
 		$this->load->model(array('web_model','m_user_model','departemen_model','role_access_model','m_divisi_model'));
 	}
 
@@ -85,6 +88,22 @@ class M_data_user extends CI_Controller {
 		$data['departemen'] = $this->departemen_model->getAllDepDivisi();
 		$data['divisi'] 	= $this->web_model->getAll('tb_divisi');
 		$this->load->view('admin/aaa', $data);
+	}
+
+// NEW PASS 
+
+	public function new_pass(){
+
+		$id					= $this->session->userdata('user');
+		$status_pas			= '1';
+		$new_pass			= $this->input->post('confirm_password');
+		$this->m_user_model->new_pass($id,$status_pas);
+		$a['page']	= "d_amain";
+		
+		$this->load->view('admin/aaa', $a);
+
+
+		echo $id ;
 	}
 
 

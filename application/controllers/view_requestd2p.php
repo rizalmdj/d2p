@@ -3,6 +3,9 @@
 class View_requestd2p extends CI_Controller {
 	function __construct() {
 		parent::__construct();
+		if($this->session->userdata('admin_valid') != true){
+			redirect(base_url("index.php/admin/login"));
+		}
 		$this->load->model(array('web_model','view_requestd2p_model'));
 	}
 
@@ -29,7 +32,7 @@ class View_requestd2p extends CI_Controller {
 	public function approval_request_d2p($id,$id_role){
 
 		// print_r($id.'-'.$id_role); die();
-		if($id_role = '3'){
+		if($id_role == '3'){
 			$status = '4';
 		}elseif($id_role == '4'){
 			$status = '5';
@@ -40,8 +43,8 @@ class View_requestd2p extends CI_Controller {
 
 // REJECT LIST REQUEST D2P
 
-	public function reject_request_d2p($id){
-		$this->view_requestd2p_model->reject_request_d2p($id,'tr_request');
+	public function reject_request_d2p($id,$id_role){
+		$this->view_requestd2p_model->reject_request_d2p($id,$id_role);
 		redirect('index.php/view_requestd2p/view_requestd2p_list');
 	}
 

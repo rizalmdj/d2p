@@ -38,23 +38,24 @@
 		<table width="200%" class="table-form">		
 
 
-			<tr><td width="35%">Dokumen SIT  <span style="color:red;">*</span></b></td><td><input type="file" name="upload_file1"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Dokumen SIT  <span style="color:red;">*</span></b></td><td><input type="file" name="upload_file1"  required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Dokumen UAT <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file2"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Dokumen UAT <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file2"  required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">List Object <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file3"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">List Object <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file3" required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Deployment Guide <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file4"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Deployment Guide <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file4"  required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Rollback Plan <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file5"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Rollback Plan <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file5" required style="width: 400px" class="form-control"></b></td></tr>
 
-			<tr><td width="35%">Release Notes <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file6"  style="width: 400px" class="form-control"></b></td></tr>
+			<tr><td width="35%">Release Notes <span style="color:red;">*</span></td><td><b><input type="file" name="upload_file6" required style="width: 400px" class="form-control"></b></td></tr>
 
 		</table>
 
 		<table>
 
-			<tr><td width="200%"><b><i><text style="color: red;" >* File upload only gif, jpg, jpeg, png, pdf</i></b></td></tr>
+			<tr><td width="200%"><b><i><text style="color: red;" > File upload only docx, xlsx, jpg, jpeg, png, pdf</i></b></td></tr>
+			<tr><td width="200%"><b><i><text style="color: red;" >* required</i></b></td></tr>
 
 			<tr><td colspan="2">
 			

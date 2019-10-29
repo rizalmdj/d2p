@@ -57,6 +57,32 @@
 			$no 	= ($this->uri->segment(4) + 1);
 			$i = 1;
 			foreach ($request as $b) {
+				$bgcolor ="";
+				if ($b->id_status == 8){
+					$bgColor = '#e74c3c';
+					//echo $bgColor;
+				}else if($b->id_status == 1){
+					$bgColor = '#F5F5F5';
+					//echo $bgColor;
+				}else if($b->id_status == 2){
+					$bgColor = '#efb73e';
+					//echo $bgColor;
+				}else if($b->id_status == 3){
+					$bgColor = '#efb73e';
+					//echo $bgColor;
+				}else if($b->id_status == 4){
+					$bgColor = '#efb73e';
+					//echo $bgColor;
+				}else if($b->id_status == 5){
+					$bgColor = '#38b44a';
+					//echo $bgColor;
+				}else if($b->id_status == 6){
+					$bgColor = '#e74c3c';
+					//echo $bgColor;
+				}else if($b->id_status == 7){
+					$bgColor = '#e74c3c';
+					//echo $bgColor;
+				}
 		?>
 		<tr style="text_align:center;">
 
@@ -64,9 +90,8 @@
 			<td><?php echo $b->name; ?></td>
 			<td><a href="<?php echo base_URL(); ?>index.php/request_d2p/detail_request_d2p/<?php echo $b->id; ?>"><?php echo $b->project_name; ?></a></td>
 			<td><?php echo $b->project_id; ?></td>
-			<td><?php echo $b->req_date; ?></td>
-			<td><?php echo $b->status_name; ?></td>
-			
+			<td><?php echo $b->req_date; ?></td>	
+			<td style = "background-color:<?php echo $bgColor ?>;" > <?php echo $b->status_name?> </td>
 			<?php 
 			if ($this->session->userdata('admin_level')) {
 			?>
@@ -85,7 +110,13 @@
 						<a href="<?php echo base_URL(); ?>index.php/request_d2p/submit_request_d2p/<?php echo $b->id; ?>" 
 							class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to submit?')"><i
 						class="icon-ok icon-white"></i> Submit</a>	 
+					</div><br>
+					<div class="btn-group">
+						<a href="<?php echo base_URL(); ?>index.php/request_d2p/edit_request_d2p/<?php echo $b->id; ?>" 
+							class="btn btn-warning btn-sm"><i
+						class="icon-edit icon-white"></i> Edit</a>	 
 					</div>
+
 					<?php } else{ ?>
 						<div class="btn-group">
 						<a href="#"  class="btn btn-success  btn-sm">Submitted</a>

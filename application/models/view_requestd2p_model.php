@@ -40,16 +40,25 @@ class View_requestd2p_model extends CI_Model {
         );
         $this->db->where('id', $id);
         $this->db->update('tr_request', $data);
-
+        echo print_r($id);
     } 
     
 // REJECT REQUEST D2P MODEL
 
-   public function reject_request_d2p() {
+   public function reject_request_d2p($id,$id_role) {
+        if ($id_role == '3'){
+            $status_req = '6';
+        }else if ($id_role == '4'){
+            $status_req = '8';
+        }else if ($id_role == '1'){
+            $status_req = '1';
+        }
+
         $data = array(
-            "status_req" => '8',
-            "update_date" => $this->input->post(NOW(),true)
+            "status_req" => $status_req,
+            "update_date" => date('Y-m-d H:i:s'),
         );
+        $this->db->where('id', $id);
         $this->db->update('tr_request', $data);
 
     } 

@@ -3,6 +3,11 @@
 class Master_data extends CI_Controller {
 	function __construct() {
 		parent::__construct();
+		if($this->session->userdata('admin_valid') != true){
+			redirect(base_url("index.php/admin/login"));
+		}elseif($this->session->userdata('admin_level')!= '1'){
+			redirect(base_url("index.php/admin/login"));
+		}
 		$this->load->model(array('web_model','departemen_model'));
 	}
 
